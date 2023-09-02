@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:58:02 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/02 11:55:46 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:18:03 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@
 #include <stdlib.h>     // for getenv
 #include <curses.h>     // for terminal handling functions (curses library)
 
-// utils-minishell
+# define INT_X	+9223372036854775807
+# define INT_N	-9223372036854775807
 
+// utils-minishell
+void	ft_putstr_fd(char *s, int fd);
+int	    ft_isdigit(int c);
+int	    is_all_digit(char *s);
 
 #endif
