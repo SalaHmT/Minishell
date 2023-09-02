@@ -44,6 +44,6 @@ Here are some common use cases and tips for using the `exit` command in a shell:
         ```
 3. **Checking the Exit Status** :
    - you can check the exit status of the last executed command by using the special variable `$?`. 
-   ```
-       echo $?
-    ```
+        ```bash
+        echo $?
+        ```
