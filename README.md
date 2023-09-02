@@ -3,7 +3,7 @@
 
 ### **`Exit`** :
 
-#### The `exit` command in a shell is used to exit the current shell session gracefully. It allows you to terminate the shell and return an optional exit status to the calling process.
+The `exit` command in a shell is used to exit the current shell session gracefully. It allows you to terminate the shell and return an optional exit status to the calling process.
 
 #### How `exit` Works in a Shell:
 * *Syntax* :
