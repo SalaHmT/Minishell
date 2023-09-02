@@ -7,7 +7,7 @@ The `exit` command in a shell is used to exit the current shell session graceful
 
 #### How `exit` Works in a Shell:
 * *Syntax* :
-    ```
+    ```bash
        exit [status]
     ```
      `[status]` is an optional integer argument that represents the exit status of the shell.
@@ -32,9 +32,16 @@ The `exit` command in a shell is used to exit the current shell session graceful
 Here are some common use cases and tips for using the `exit` command in a shell:
 1. **Exit with Default Status** :
    - To exit the shell with the default exit status (0), simply type `exit` and press Enter.
+        ```bash
+            exit
+        ```
 2. **Specify an Exit Status** :
    - To exit the shell with a specific exit status, use `exit` followed by the desired 
    integer status, e.g., `exit 1` or `exit 42`.
+        ```bash
+            exit 1      # Indicates an error or failure
+            exit 42     # Custom exit status
+        ```
 3. **Checking the Exit Status** :
    - you can check the exit status of the last executed command by using the special variable `$?`. 
    ```
