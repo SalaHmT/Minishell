@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:58:02 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/03 22:25:38 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/03 22:33:24 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ void	freesplit(char **s, int i);
 
 //handler signal 
 void sig_ctlc(int input_sig); //handler signal ctlc
+
+// minishell fonction
+void mini_shell_w(void);
 
 #endif
