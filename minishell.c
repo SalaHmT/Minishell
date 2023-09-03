@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/03 18:36:45 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/03 22:29:45 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,21 @@
 
 int main() {
     char *input;
-    char *command_line = NULL;  // To accumulate the command line
 
-    while (1) {
-        input = readline("minishell-$ ");
-
-        if (input == NULL) {
-            // Handle EOF or error (e.g., Ctrl+D)
-            printf("\nExiting Minishell.\n");
-            free(command_line);
+    signal(SIGINT, SIG_IGN);// ignore clt-c whene you press in your keyboord
+    while (1) 
+    {
+        signal(SIGINT, sig_ctlc);
+        input = readline("\033[0;32mminishell-$ \033[0m");
+        if (!input) // Handle EOF or error (e.g., Ctrl+D) whene you press (e.g., Ctrl+D) progreme is finish
+        {
+            printf("exit\n");
             break;
         }
-
-        // Add the input to the history as before
-        if (strlen(input) > 0) {
-            add_history(input);
-        }
-
-        // Process the command line (e.g., execute it or parse it)
-        // For simplicity, we'll just print the input
-        char **s = ft_split(input, ' ');
-        int i = 0;
-        while (s[i] != NULL) {
-            printf("%s.\n", s[i]);
-            free(s[i]); // Free each element of the split result
-            i++;
-        }
-        free(s); // Free the split result array
-
-        // Free the input buffer
-        free(input);
+        add_history(input); // Add the input to the history as before
+        printf("%s\n", input);// Process the command line (e.g., execute it or parse it)
+        free(input);// Free the input buffer
     }
-
-    // Free the accumulated command line
-    free(command_line);
-
-    return 0;
+    return (0);
 }
 

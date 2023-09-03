@@ -19,7 +19,7 @@ HEADER  = include/minishell.h
 
 O_DIR   := OBJ_DER
 
-PARS = $(addprefix src/parsing/, )
+PARS = $(addprefix src/parsing/, signal_mshell.c)
 
 
 BUIL = $(addprefix src/builtins/, )
