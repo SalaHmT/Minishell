@@ -11,7 +11,9 @@ CC      = cc
 
 RM      = rm -rf
 
-CFLAGS  = -Wall -Wextra -Werror 
+CFLAGS  = -Wall -Wextra -Werror
+
+READLINE = -lreadline -lhistory
 
 HEADER  = include/minishell.h
 
@@ -26,10 +28,11 @@ BUIL = $(addprefix src/builtins/, )
 EXEC = $(addprefix src/executable/, )
 
 
-UTIL = $(addprefix src/utils/, )
+UTIL = $(addprefix src/utils/, is_all_digit.c ft_substr.c ft_strlen.c \
+	ft_strjoin.c ft_strdup.c ft_split.c ft_putstr_fd.c ft_putchar_fd.c atoi_exit.c)
 
 
-M_SRCS = $(UTIL) $(EXEC) $(PARS)
+M_SRCS = minishell.c $(UTIL) $(EXEC) $(PARS)
 
 M_OBJS = $(patsubst %.c,$(O_DIR)/%.o,$(M_SRCS))
 
@@ -60,7 +63,7 @@ Prj_Name = "\n" \
 
 $(NAME): $(M_OBJS) $(HEADER)
 	@echo $(Prj_Name)
-	@$(CC) $(CFLAGS) $(M_OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(M_OBJS) $(READLINE) -o $(NAME)
 	@echo "$(C_BLUE)		✅ Compilation completed successfully!$(C_RESET)"
 
 $(O_DIR)/%.o: %.c $(HEADER)
