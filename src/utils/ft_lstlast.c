@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_all_digit.c                                     :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 13:55:52 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/04 22:24:19 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/09/04 19:33:44 by ylamsiah          #+#    #+#             */
+/*   Updated: 2023/09/04 19:34:02 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_isdigit(int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	return (c >= '0' && c <= '9');
-}
-
-int	is_all_digit(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (*(s + i))
-	{
-		if (!ft_isdigit(*(s + i)))
-			return (0);
-		i++;
-	}
-	return (1);
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

@@ -6,13 +6,13 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 22:34:38 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/03 22:35:15 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/04 21:12:59 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void mini_shell_w(void)
+void mini_shell_w(t_shell *cmd)
 {
     char *input;
 
@@ -27,7 +27,8 @@ void mini_shell_w(void)
             break;
         }
         add_history(input); // Add the input to the history as before
-        printf("%s\n", input);// Process the command line (e.g., execute it or parse it)
+        input_cmd(cmd, input);
+        mini_exec(cmd);
         free(input);// Free the input buffer
     }
 }

@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_all_digit.c                                     :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 13:55:52 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/04 22:24:19 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/09/04 20:25:20 by ylamsiah          #+#    #+#             */
+/*   Updated: 2023/09/04 20:25:59 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_isdigit(int c)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	return (c >= '0' && c <= '9');
+	size_t			i;
+
+	i = -1;
+	while (++i < n)
+		*(unsigned char *)(s + i) = (unsigned char)c;
+	return (s);
 }
 
-int	is_all_digit(char *s)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	ft_memset(s, 0, n);
+}
 
-	i = 0;
-	while (*(s + i))
-	{
-		if (!ft_isdigit(*(s + i)))
-			return (0);
-		i++;
-	}
-	return (1);
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*str;
+
+	str = malloc(count * size);
+	if (!str)
+		return (str);
+	ft_bzero(str, (count * size));
+	return (str);
 }

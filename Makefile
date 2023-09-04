@@ -19,20 +19,21 @@ HEADER  = include/minishell.h
 
 O_DIR   := OBJ_DER
 
-PARS = $(addprefix src/parsing/, signal_mshell.c mini_shell_w.c)
+PARS = $(addprefix src/parsing/, input_cmd.c signal_mshell.c mini_shell_w.c add_arg.c)
 
 
-BUIL = $(addprefix src/builtins/, )
+BUIL = $(addprefix src/builtins/, shell_exit.c)
 
 
-EXEC = $(addprefix src/executable/, )
+EXEC = $(addprefix src/executable/, mini_execute.c)
 
 
-UTIL = $(addprefix src/utils/, is_all_digit.c ft_substr.c ft_strlen.c \
-	ft_strjoin.c ft_strdup.c ft_split.c ft_putstr_fd.c ft_putchar_fd.c atoi_exit.c)
+UTIL = $(addprefix src/utils/, is_all_digit.c ft_substr.c ft_strlen.c ft_strcmp.c ft_strjoin.c ft_strdup.c \
+	ft_split.c ft_putstr_fd.c ft_putchar_fd.c atoi_exit.c ft_lstadd_back.c ft_lstlast.c size_cmd_list.c \
+	ft_lstnew.c ft_calloc.c)
 
 
-M_SRCS = minishell.c $(UTIL) $(EXEC) $(PARS)
+M_SRCS = minishell.c $(UTIL) $(EXEC) $(PARS) $(BUIL)#src/builtins/shell_exit.c
 
 M_OBJS = $(patsubst %.c,$(O_DIR)/%.o,$(M_SRCS))
 

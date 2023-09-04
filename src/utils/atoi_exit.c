@@ -6,34 +6,31 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 14:03:42 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/02 14:15:33 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/04 22:26:31 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-long long	ft_atoi_exit(const char *s)
+long long int atoi_exit(const char *str)
 {
-	long long int	n;
-	int			            sign;
+    long long int	n = 0;
+    int 			sign = 1;
 
-	n = 0;
-	sign = 1;
-	while (*s == 32 || (*s >= 9 && *s <= 13))
-		s++;
-	if (*s == '-' || *s == '+')
-	{
-		if (*s == '-')
-			sign *= (-1);
-		s++;
-	}
-	while (*s && *s >= '0' && *s <= '9')
-	{
-		n = n * 10 + (*s++ - '0');
-		if (n * sign > INT_X)
-			return (-1);
-		else if (n * sign < INT_N)
-			return (-1);
-	}
-	return (n * sign);
+    while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
+        str++;
+    if (*str == '-' || *str == '+')
+    {
+        if (*str == '-')
+            sign = -1;
+        str++;
+    }
+    while (*str && *str >= '0' && *str <= '9')
+    {
+        if (n > LLONG_MAX / 10 || (n == LLONG_MAX / 10 && (*str - '0') > LLONG_MAX % 10))
+            return (-1);
+        n = n * 10 + (*str - '0');
+        str++;
+    }
+    return (n * sign);
 }

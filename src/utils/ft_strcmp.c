@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_all_digit.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 13:55:52 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/04 22:24:19 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/09/04 18:51:23 by ylamsiah          #+#    #+#             */
+/*   Updated: 2023/09/04 18:51:41 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_isdigit(int c)
+int	ft_strcmp(char *s1, char *s2)
 {
-	return (c >= '0' && c <= '9');
-}
-
-int	is_all_digit(char *s)
-{
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	while (*(s + i))
-	{
-		if (!ft_isdigit(*(s + i)))
-			return (0);
+	while (s1[i] == s2[i] && (s1[i] || s2[i]))
 		i++;
-	}
-	return (1);
+	return (s1[i] - s2[i]);
 }
