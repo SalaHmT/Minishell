@@ -13,7 +13,7 @@ RM      = rm -rf
 
 CFLAGS  = -Wall -Wextra -Werror
 
-READLINE = -lreadline #-lhistory
+READLINE = -lreadline
 
 HEADER  = include/minishell.h
 
@@ -22,7 +22,7 @@ O_DIR   := OBJ_DER
 PARS = $(addprefix src/parsing/, input_cmd.c signal_mshell.c mini_shell_w.c add_arg.c)
 
 
-BUIL = $(addprefix src/builtins/, shell_exit.c)
+BUIL = $(addprefix src/builtins/, shell_exit.c shell_env.c)
 
 
 EXEC = $(addprefix src/executable/, mini_execute.c)
@@ -33,7 +33,7 @@ UTIL = $(addprefix src/utils/, is_all_digit.c ft_substr.c ft_strlen.c ft_strcmp.
 	ft_lstnew.c ft_calloc.c)
 
 
-M_SRCS = minishell.c $(UTIL) $(EXEC) $(PARS) $(BUIL)#src/builtins/shell_exit.c
+M_SRCS = minishell.c $(UTIL) $(EXEC) $(PARS) $(BUIL)
 
 M_OBJS = $(patsubst %.c,$(O_DIR)/%.o,$(M_SRCS))
 

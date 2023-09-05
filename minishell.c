@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/05 13:05:42 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:39:14 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int ac, char **str, char **env)
         cmd = malloc(sizeof(t_shell));
         if (!cmd)
             return (0);
-        cmd->cmnd = ft_comdup(env); 
+        cmd->str = ft_comdup(env); 
         mini_shell_w(cmd);
     }
     else

@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:58:02 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/04 22:23:23 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:39:04 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	lst_size_cmd(t_list *lst);
 
 typedef struct s_shell
 {
+    char **str;
     char **cmnd;
     t_list *cmd_list; // Pointer to the linked list of commands
     struct s_shell *next;
@@ -105,5 +106,6 @@ void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 void shell_exit(t_shell *cmnd);
+void shell_env(t_shell *cmd);
 
 #endif
