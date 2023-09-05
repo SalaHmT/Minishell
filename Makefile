@@ -3,9 +3,9 @@ NAME = Minishell
 YELLOW	=	$(shell tput -Txterm setaf 4)
 GREEN	=	$(shell tput -Txterm setaf 5)
 
-C_BLUE  = \033[0;34m
-C_CYAN  = \033[0;36m
-C_RESET = \033[0m
+C_BLUE  = \033[1;34m
+C_CYAN  = \033[1;36m
+C_RESET = \033[34m
 
 CC      = cc
 
@@ -13,7 +13,7 @@ RM      = rm -rf
 
 CFLAGS  = -Wall -Wextra -Werror
 
-READLINE = -lreadline -lhistory
+READLINE = -lreadline #-lhistory
 
 HEADER  = include/minishell.h
 
