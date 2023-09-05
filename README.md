@@ -1,5 +1,36 @@
 # Minishell
 
+> lexical analysis is the process of converting a sequence of characters (such
+> as in a computer program or web page) into a sequence of tokens (strings with
+> an identified "meaning").
+
+Normally we represent the token as a pair: `(token type, token value)`. For
+example, if a program's source file contains string: "998", the lexer will
+treat it as token `(Number, 998)` meaning it is a number with value of `998`.
+
+
+## Lexer vs Compiler
+
+Let's first look at the structure of a compiler:
+
+```
+                   +-------+                      +--------+
+-- source code --> | lexer | --> token stream --> | parser | --> assembly
+                   +-------+                      +--------+
+```
+
+The Compiler can be treated as a transformer that transform C source code into
+assembly. In this sense, lexer and parser are transformers as well: Lexer
+takes C source code as input and output token stream; Parser will consume the
+token stream and generate assembly code.
+
+Then why do we need lexer and a parser? Well the Compiler's job is hard! So we
+recruit lexer to do part of the job and parser to do the rest so that each
+will need to deal with simple one only.
+
+That's the value of a lexer: to simplify the parser by converting the stream
+of source code into token stream.
+
 
 ### **`Exit`** :
 
