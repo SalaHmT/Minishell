@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_env.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 17:58:12 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/07 17:33:57 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/09/07 17:06:43 by ylamsiah          #+#    #+#             */
+/*   Updated: 2023/09/07 17:09:06 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void shell_env(t_shell *cmd)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    int i;
+	size_t	i;
 
-    i = 0;
-    while (cmd->str[i])
-    {
-		ft_putstr_fd(cmd->str[i], STDOUT_FILENO);
-        ft_putchar_fd('\n', STDIN_FILENO);
-		i++;
-    }
+	if (!n)
+		return (0);
+	i = -1;
+	while (++i < n && (*(s1 + i) || *(s2 + i)))
+		if (*(s1 + i) != *(s2 + i))
+			return ((unsigned char )*(s1 + i) - (unsigned char )*(s2 + i));
+	return (0);
 }

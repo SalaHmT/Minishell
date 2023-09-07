@@ -22,7 +22,7 @@ O_DIR   := OBJ_DER
 PARS = $(addprefix src/parsing/, input_cmd.c signal_mshell.c mini_shell_w.c add_arg.c)
 
 
-BUIL = $(addprefix src/builtins/, shell_exit.c shell_env.c)
+BUIL = $(addprefix src/builtins/, find_p.c shell_exit.c shell_env.c)
 
 
 EXEC = $(addprefix src/executable/, mini_execute.c)
@@ -30,7 +30,7 @@ EXEC = $(addprefix src/executable/, mini_execute.c)
 
 UTIL = $(addprefix src/utils/, is_all_digit.c ft_substr.c ft_strlen.c ft_strcmp.c ft_strjoin.c ft_strdup.c \
 	ft_split.c ft_putstr_fd.c ft_putchar_fd.c atoi_exit.c ft_lstadd_back.c ft_lstlast.c size_cmd_list.c \
-	ft_lstnew.c ft_calloc.c)
+	ft_lstnew.c ft_calloc.c ft_strncmp.c)
 
 
 M_SRCS = minishell.c $(UTIL) $(EXEC) $(PARS) $(BUIL)
