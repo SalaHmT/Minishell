@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: r4v3n <r4v3n@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:58:02 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/07 17:38:15 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:52:33 by r4v3n            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,6 @@
 
 typedef struct s_shell t_shell;
 typedef struct s_list t_list;
-
-# define PIPE		0
-# define DQ			1
-# define SQ			2
-# define WORD		3
-# define RDIN		4
-# define RDOUT		5
-# define RDHER		6
-# define RDAPP		7
-# define VARIABLE	8
-# define AND		9
-# define OR			10
-# define PRTOPEN	11
-# define PRTCLOSE	12
-# define WILD		13
-# define SPACES		14
-# define LIST		15
-# define RDARG		16
-# define IN			0
-# define OUT		1
 
 // utils-minishell
 void	ft_putstr_fd(char *s, int fd);
