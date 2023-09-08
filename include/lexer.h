@@ -13,7 +13,7 @@
 #ifndef LEXER_H
 # define LEXER_H
 #include "minishell.h"
-
+//struct lixer...
 typedef enum s_toks
 {
     PIPE = 1,
