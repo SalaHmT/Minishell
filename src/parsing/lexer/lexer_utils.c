@@ -13,7 +13,7 @@
 #include "../../../include/minishell.h"
 #include "../../../include/lexer.h"
 
-t_lexnew(char *str, int tkn)
+t_lex *ft_lexnew(char *str, int tkn)
 {
     t_lex   *new_elem;
     static int  i;
