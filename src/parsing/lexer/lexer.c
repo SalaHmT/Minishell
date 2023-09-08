@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 21:08:08 by r4v3n             #+#    #+#             */
-/*   Updated: 2023/09/07 21:53:22 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/09/08 17:30:04 by shamsate          #+#    #+#             */
+/*   Updated: 2023/09/08 17:30:23 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,45 +29,43 @@ int 	check_quotes(char *str, int i, char  fin_range)
 
 t_toks	token_check(int c)
 {
-	static int	token_list[3][2] = {
+	static int	tok_list[3][2] = {
 		{'|', PIPE},
 		{'>', GREAT},
 		{'<', LESS},
 	};
 	int		k;
-	k = 0;
-	while (k < 3)
+	k = -1;
+	while (++k < 3)
 	{
-		if (token_list[k][0] == c)
-			return (token_list[k][1]);
-		k++;
+		if (tok_list[k][0] == c)
+			return (tok_list[k][1]);
 	}
 	return (0);
 }
 
 int token_handling(char *str, int i, t_lex  **lex_list)
 {
-	t_toks token;
+	t_toks tkn;
 
-	token = token_check(str[i]);
-	if (token == GREAT && check_token (str[i + 1]) == GREAT)
+	tkn = token_check(str[i]);
+	if (tkn == GREAT && check_token (str[i + 1]) == GREAT)
 	{
-		if (!add_nd(NULL, GREAT_GREAT, lex_list))
+		if (!add_nd(NULL, Double_GREAT, lex_list))
 			return (-1);
 		return (2);
 	}
-	else if (token == LESS && token_check(str[i + 1]) == LESS)
+	else if (tkn == LESS && token_check(str[i + 1]) == LESS)
 	{
-		if (!add_nd(NULL, LESS_LESS, lex_list))
+		if (!add_nd(NULL, Double_LESS, lex_list))
 			return (-1);
 		return (2);
 	}
-	else if (token)
+	else if (tkn)
 	{
-		if (!add_nd(NULL, token, lex_list))
+		if (!add_nd(NULL, tkn, lex_list))
 			return (-1);
 		return (1);
 	}	
 	return (0);
 }
-

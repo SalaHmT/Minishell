@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/08 17:29:52 by shamsate          #+#    #+#             */
+/*   Updated: 2023/09/08 17:29:57 by shamsate         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 #include "../../../include/lexer.h"
 
-t_lexnew(char *str, int token)
+t_lexnew(char *str, int tkn)
 {
     t_lex   *new_elem;
     static int  i;
@@ -12,7 +23,7 @@ t_lexnew(char *str, int token)
     if (!new_elem)
         return (0);
     new_elem->str = str;
-    new_elem->token = token;
+    new_elem->tok = tkn;
     new_elem->i = i++;
     new_elem-> next = NULL;
     new_elem->prev = NULL;
@@ -21,29 +32,43 @@ t_lexnew(char *str, int token)
 
 void    ft_lexadd_back(t_lex **lst, t_lex *new)
 {
-    t_lex *tmp;
+    t_lex *tmpo;
 
-    tmp = lst;
+    tmpo = lst;
     if (*lst == NULL)
     {
         *lst = new;
         return ;
     }
-    while (tmp->next != NULL)
-        tmp = tmp->next;
-    tmp->next = new;
-    new->prev =  tmp;
+    while (tmpo->next != NULL)
+        tmpo = tmpo->next;
+    tmpo->next = new;
+    new->prev =  tmpo;
 }
 
 
 int add_nd(char *str, t_toks token, t_lex **lex_list)
 {
-    t_lex *node;
+    t_lex *nd;
 
-    node = ft_lexnew(str, token);
-    if (!node)
+    nd = ft_lexnew(str, token);
+    if (!nd)
         return (0);
-    ft_lexadd_back(lex_list, node);
+    ft_lexadd_back(lex_list, nd);
     return (1);
 }
 
+int is_space_tab(char c)
+{
+    return (c == 32 || (c >= 9 && c <= 13));
+}
+
+int jump_space(char *str, int i)
+{
+    int j;
+
+    j = 0;
+    while (is_space_tab(str[i + j]))
+        j++;
+    return (j);
+}
