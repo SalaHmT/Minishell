@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 22:34:38 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/07 17:38:57 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:28:19 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ void mini_shell_w(t_shell *cmd)
             printf("exit\n");
             break;
         }
-        add_history(input); // Add the input to the history as before
-        input_cmd(cmd, input);
-        search(cmd);
-        mini_exec(cmd);
+		if (input[0])
+		{
+            add_history(input); // Add the input to history
+            input_cmd(cmd, input);
+            search(cmd);
+            mini_exec(cmd);
+        }
         free(input);// Free the input buffer
     }
 }
