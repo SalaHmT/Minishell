@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/08 15:42:04 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/09 14:12:50 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int main(int ac, char **str, char **env)
 {
     (void)str;
-    (void)env;
     t_shell *cmd;
     if (ac == 1)
     {
+        printf("%s\n", Welcome);
         cmd = malloc(sizeof(t_shell));
         if (!cmd)
             return (0);

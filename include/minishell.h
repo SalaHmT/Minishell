@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/09/08 17:28:55 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/09/09 14:15:38 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,21 @@
 #include <readline/readline.h> // for rl_on_new_line rl_replace_line rl_redisplay
 #include <readline/history.h> // for rl_clear_history add_history
 #include <limits.h> // for LLONG_MAX and LLONG_MIN
+#include <errno.h>
+
+# define Welcome  "\n \
+   \033[1;34m╔══════════════════════════════════════════════════════════════════════════════════╗\033[34m\n\
+    \033[1;34m║\033[34m   \033[1;31m███╗   ███╗ ██╗ ███╗   ██╗ ██╗ ███████╗ ██╗  ██╗  ███████╗ ██║      ██║      \033[34m  \033[1;34m║\033[34m\n\
+    \033[1;34m║\033[34m   \033[1;31m████╗ ████║ ██║ ████╗  ██║ ██║ ██╔════╝ ██║  ██║  ██╔════╝ ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
+    \033[1;34m║\033[34m   \033[1;31m██╔████╔██║ ██║ ██╔██╗ ██║ ██║ ███████╗ ███████║  █████╗   ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
+    \033[1;34m║\033[34m   \033[1;31m██║╚██╔╝██║ ██║ ██║╚██╗██║ ██║ ╚════██║ ██╔══██║  ██╔══╝   ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
+    \033[1;34m║\033[34m   \033[1;31m██║ ╚═╝ ██║ ██║ ██║ ╚████║ ██║ ███████║ ██║  ██║  ███████╗ ███████╗ ███████╗   \033[34m\033[1;34m║\033[34m\n\
+    \033[1;34m║\033[34m   \033[1;31m╚═╝     ╚═╝ ╚═╝ ╚═╝  ╚═══╝ ╚═╝ ╚══════╝ ╚═╝  ╚═╝  ╚══════╝ ╚══════╝ ╚══════╝   \033[34m\033[1;34m║\033[34m\n\
+    \033[1;34m╚══════════════════════════════════════════════════════════════════════════════════╝\033[34m\n"
 
 typedef struct s_shell t_shell;
 typedef struct s_list t_list;
+# define ERROR		-1
 
 // utils-minishell
 void	ft_putstr_fd(char *s, int fd);
@@ -94,7 +106,8 @@ void shell_env(t_shell *cmd);
 
 // search
 void search_PWD(t_shell *cmd);
-void search_Path(t_shell *cmd);
 void search(t_shell *cmd);
+void shell_cd(t_shell *shell_m);
+
 
 #endif

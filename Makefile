@@ -22,7 +22,7 @@ O_DIR   := OBJ_DER
 PARS = $(addprefix src/parsing/, input_cmd.c signal_mshell.c mini_shell_w.c add_arg.c)
 
 
-BUIL = $(addprefix src/builtins/, find_p.c shell_exit.c shell_env.c)
+BUIL = $(addprefix src/builtins/, find_p.c shell_exit.c shell_env.c shell_cd.c)
 
 
 EXEC = $(addprefix src/executable/, mini_execute.c)

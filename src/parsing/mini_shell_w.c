@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 22:34:38 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/08 15:28:19 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/09 14:16:02 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void mini_shell_w(t_shell *cmd)
         if (!input) // Handle EOF or error (e.g., Ctrl+D) whene you press (e.g., Ctrl+D) progreme is finish
         {
             printf("exit\n");
-            break;
+            break ;
         }
 		if (input[0])
 		{
