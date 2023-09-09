@@ -6,21 +6,21 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:58:12 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/09 14:17:11 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/09 14:37:13 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void shell_env(t_shell *cmd)
+void	shell_env(t_shell *cmd)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (cmd->str[i])
-    {
+	i = 0;
+	while (cmd->str[i])
+	{
 		ft_putstr_fd(cmd->str[i], STDOUT_FILENO);
-        ft_putchar_fd('\n', STDIN_FILENO);
+		ft_putchar_fd('\n', STDIN_FILENO);
 		i++;
-    }
+	}
 }
