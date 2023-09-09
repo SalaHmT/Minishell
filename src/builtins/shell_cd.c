@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:54:01 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/09 14:49:38 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/09 15:34:30 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	shell_cd(t_shell *shell_m)
 
 	s = shell_m->cmnd;
 	// Check if no arguments or argument is "-"
-	if (!s[1] || !ft_strcmp(s[1], "-")) 
+	if (!s[1]) 
 		ret = check_way(shell_m, "HOME=");
 	else if (ft_strncmp(s[1], "-", 1) == 0)
 		ret = check_way(shell_m, "OLDPWD=");

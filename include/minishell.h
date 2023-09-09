@@ -6,7 +6,7 @@
 /*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/09/09 14:39:09 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/09/09 17:30:50 by ylamsiah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ void shell_env(t_shell *cmd);
 void search_p_o_p(t_shell *cmd);
 void search(t_shell *cmd);
 void shell_cd(t_shell *shell_m);
-
+void	shell_echo(t_shell *cmd);
 
 #endif
