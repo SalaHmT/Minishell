@@ -22,7 +22,7 @@ t_lex	*ft_lexnew(char *str, int tkn)
 	new_elem = (t_lex *)malloc(sizeof(t_lex));
 	if (!new_elem)
 		return (0);
-	new_elem->str = str;
+	new_elem->arg = str;
 	new_elem->tok = tkn;
 	new_elem->i = i++;
 	new_elem->next = NULL;
