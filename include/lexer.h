@@ -25,7 +25,7 @@ typedef enum s_toks
 
 typedef struct  s_lex
 {
-    char    *str;
+    char    *arg;
     t_toks tok;
     int     i;
     struct s_lex *next;
