@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   free_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/02 13:47:23 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/09 14:13:59 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/12/03 01:10:17 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/03 02:06:00 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	free_tab(char **tab)
 {
-	size_t	i;
-
-	if (!s)
-		return ;
-	i = -1;
-	while (s[++i])
-		ft_putchar_fd(s[i], fd);
+	int i;
+	
+	i = 0;
+	while (tab && tab[i])
+		free(tab[i++]);
+	free(tab);
 }

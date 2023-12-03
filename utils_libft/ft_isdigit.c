@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 19:33:44 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/09 14:13:51 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/12/03 02:03:55 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/03 02:05:44 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_isdigit(int c)
 {
-	if (!lst)
-		return (0);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	return (c >= '0' && c <= '9');
 }

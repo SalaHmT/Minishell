@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_env.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 17:58:12 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/09 14:37:13 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/12/03 02:02:36 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/03 02:05:41 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-void	shell_env(t_shell *cmd)
+int	ft_isalpha(int c)
 {
-	int	i;
-
-	i = 0;
-	while (cmd->str[i])
-	{
-		ft_putstr_fd(cmd->str[i], STDOUT_FILENO);
-		ft_putchar_fd('\n', STDIN_FILENO);
-		i++;
-	}
+	return ((c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'));
 }

@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   ft_joinchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/08 17:28:51 by shamsate          #+#    #+#             */
-/*   Updated: 2023/09/08 17:29:07 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/03 01:44:34 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/03 02:05:50 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
-#include "minishell.h"
-#include "lexer.h"
-typdef struct s_tools
+#include "../include/minishell.h"
+
+char	ft_joinchar(char *str, char c)
 {
+	char 	*str2;
+	int		i;
 
-}t_tools;
-
-
-typedef struct pars_tools
-{
-    t_lex   *lex_list;
-    t_lex   *redir;
-    int     id_redir;
-    t_tools *tools;
-}t_pars
-
-
-#endif
+	i = 0;
+	str2 = (char *)malloc(ft_strlen(str) + 2);
+	while (str[i])
+	{
+		str2[i] = str[i];
+		i++;
+	}
+	str2[i++] = c;
+	str2[i] = 0;
+	free(str);
+	return(str2); 
+}

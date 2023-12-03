@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 19:32:40 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/09/09 14:13:43 by ylamsiah         ###   ########.fr       */
+/*   Created: 2023/12/03 02:04:42 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/03 02:05:39 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-t_list	*ft_lstnew(int content)
+int	ft_isalnum(int c)
 {
-	t_list	*s;
-
-	s = (t_list *)malloc(sizeof(t_list));
-	if (!s)
-		return (NULL);
-	s->content = content;
-	s->next = NULL;
-	return (s);
+	return (ft_isalpha(c) || ft_isdigit(c));
 }

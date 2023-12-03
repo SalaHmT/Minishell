@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylamsiah <ylamsiah@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/09/09 19:16:45 by ylamsiah         ###   ########.fr       */
+/*   Updated: 2023/12/03 02:24:25 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,82 +33,85 @@
 
 # define Welcome  "\n \
    \033[1;34m╔══════════════════════════════════════════════════════════════════════════════════╗\033[34m\n\
-    \033[1;34m║\033[34m   \033[1;31m███╗   ███╗ ██╗ ███╗   ██╗ ██╗ ███████╗ ██╗  ██╗  ███████╗ ██║      ██║      \033[34m  \033[1;34m║\033[34m\n\
-    \033[1;34m║\033[34m   \033[1;31m████╗ ████║ ██║ ████╗  ██║ ██║ ██╔════╝ ██║  ██║  ██╔════╝ ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
-    \033[1;34m║\033[34m   \033[1;31m██╔████╔██║ ██║ ██╔██╗ ██║ ██║ ███████╗ ███████║  █████╗   ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
-    \033[1;34m║\033[34m   \033[1;31m██║╚██╔╝██║ ██║ ██║╚██╗██║ ██║ ╚════██║ ██╔══██║  ██╔══╝   ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
-    \033[1;34m║\033[34m   \033[1;31m██║ ╚═╝ ██║ ██║ ██║ ╚████║ ██║ ███████║ ██║  ██║  ███████╗ ███████╗ ███████╗   \033[34m\033[1;34m║\033[34m\n\
-    \033[1;34m║\033[34m   \033[1;31m╚═╝     ╚═╝ ╚═╝ ╚═╝  ╚═══╝ ╚═╝ ╚══════╝ ╚═╝  ╚═╝  ╚══════╝ ╚══════╝ ╚══════╝   \033[34m\033[1;34m║\033[34m\n\
-    \033[1;34m╚══════════════════════════════════════════════════════════════════════════════════╝\033[34m\n"
+	\033[1;34m║\033[34m   \033[1;31m███╗   ███╗ ██╗ ███╗   ██╗ ██╗ ███████╗ ██╗  ██╗  ███████╗ ██║      ██║      \033[34m  \033[1;34m║\033[34m\n\
+	\033[1;34m║\033[34m   \033[1;31m████╗ ████║ ██║ ████╗  ██║ ██║ ██╔════╝ ██║  ██║  ██╔════╝ ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
+	\033[1;34m║\033[34m   \033[1;31m██╔████╔██║ ██║ ██╔██╗ ██║ ██║ ███████╗ ███████║  █████╗   ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
+	\033[1;34m║\033[34m   \033[1;31m██║╚██╔╝██║ ██║ ██║╚██╗██║ ██║ ╚════██║ ██╔══██║  ██╔══╝   ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
+	\033[1;34m║\033[34m   \033[1;31m██║ ╚═╝ ██║ ██║ ██║ ╚████║ ██║ ███████║ ██║  ██║  ███████╗ ███████╗ ███████╗   \033[34m\033[1;34m║\033[34m\n\
+	\033[1;34m║\033[34m   \033[1;31m╚═╝     ╚═╝ ╚═╝ ╚═╝  ╚═══╝ ╚═╝ ╚══════╝ ╚═╝  ╚═╝  ╚══════╝ ╚══════╝ ╚══════╝   \033[34m\033[1;34m║\033[34m\n\
+	\033[1;34m╚══════════════════════════════════════════════════════════════════════════════════╝\033[34m\n"
 
-typedef struct s_shell t_shell;
-typedef struct s_list t_list;
-# define ERROR		-1
-
-// utils-minishell
-void	ft_putstr_fd(char *s, int fd);
-int	    ft_isdigit(int c);
-size_t	ft_strlen(const char *s);
-int	    is_all_digit(char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *s);
-int	    count(char const *s, char c);
-void	ft_putchar_fd(char c, int fd);
-char	**ft_split(char const *s, char c);
-void	freesplit(char **s, int i);
-void	ft_putstr_fd(char *s, int fd);
-int	    set_size_arg(char **s);
-
-//handler signal 
-void sig_ctlc(int input_sig); //handler signal ctlc
-
-// minishell fonction
-void mini_shell_w(t_shell *cmd);
-
-///////////////////////////////////
-typedef struct s_list
+//parser
+typedef struct s_comd
 {
-	int				content;
-	struct s_list	*next;
-}				t_list;
+	char			*comd;
+	char			**argms;
+	int				inp;
+	int				outp;
+	int				errp;
+	struct s_comd	*next;
+}					t_comd;
 
-int	ft_strcmp(char *s1, char *s2);
-int	lst_size_cmd(t_list *lst);
-
-
-typedef struct s_shell
+typedef struct s_tkn
 {
-    char **str;
-    char **cmnd;
-    char *_pwd;
-    char *_oldpwd;
-    char *path;
-    t_list *cmd_list; // Pointer to the linked list of commands
-    struct s_shell *next;
-}			t_shell;
+	char			*val;
+	t_types			type;
+	int				error;
+	int				flg;
+	struct s_tkn	*next;
+	struct s_tkn	*prev;
+}					t_tkn;
 
-//exec_minishell
-bool is_buil(t_shell *msh);
-void mini_exec(t_shell *m_sh);
-char	**ft_comdup(char **str);
-void	input_cmd(t_shell *m_shell, char *input);
-t_list	*ft_lstlast(t_list *lst);
-long long int	atoi_exit(const char *str);
-void	ft_lstadd_back(t_list **lst, t_list *new_cmd);
-t_list	*ft_lstnew(int content);
-void	*ft_memset(void *s, int c, size_t n);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t count, size_t size);
-void shell_exit(t_shell *cmnd);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-void shell_env(t_shell *cmd);
+typedef enum e_err
+{
+	SUCC,
+	ERRR,
+	ERR1,
+	CMD_EXE_FAILED = 126,
+	CMD_NOT_EXIST = 127,
+	SNTX_ERR = 258,
+}	t_err;
 
-// search
-void search_p_o_p(t_shell *cmd);
-void search(t_shell *cmd);
-void shell_cd(t_shell *shell_m);
-void	shell_echo(t_shell *cmd);
-void shell_pwd(t_shell *cmd);
+typedef	enum e_types
+{
+	NUl,
+	CMD,
+	ARG,
+	INF,
+	OUTF,
+	POUT,
+	DELIM,
+	OUTP,
+	PEND,
+	INP,
+	PIPE,
+	HERDOC,
+}	t_types;
 
-#endif
+// tkn & data list...
+t_tkn	*ft_new_tkn(char	*data);
+void	ft_add_tkn_back(t_tkn **data, t_tkn *new_dt);
+void	free_val_tkn(t_tkn *lst);
+void	free_clen_data(t_tkn **lst);
+// commande list ...
+t_comd  *ft_lastcmd_node(t_comd *cmd);
+void	add_cmd_back(t_comd **cmd, t_comd *new_c);
+void	free_arg_cmd(t_comd *cmd);
+void	free_node_clean(t_comd **cmd);
+int		cmd_size(t_comd *cmd);
+// parsing ...
+int 	ischar(int  c);
+
+
+
+
+// utils_libft....
+void	free_tab(char **tab);
+size_t  ft_strlen(const char *str);
+char	ft_joinchar(char *str, char c);
+int	ft_isdigit(int c);
+int	ft_isalpha(int c);
+int	ft_isalnum(int c);
+
+
+# endif
