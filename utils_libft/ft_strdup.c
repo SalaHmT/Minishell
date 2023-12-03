@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tab.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 01:10:17 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/03 17:52:29 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/03 17:51:52 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/03 18:12:37 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	free_tab(char **tab)
+char	*ft_strdup(const char *str)
 {
-	int	i;
+	char	*strr;
+	size_t	len;
 
-	i = 0;
-	while (tab && tab[i])
-		free(tab[i++]);
-	free(tab);
+	len = ft_strlen(str);
+	strr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!strr)
+		return (NULL);
+	ft_memmove(strr, str, len + 1);
+	if (!strr)
+		return (strr);
 }

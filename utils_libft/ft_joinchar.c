@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 01:44:34 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/03 02:05:50 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/03 17:52:12 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	ft_joinchar(char *str, char c)
 {
-	char 	*str2;
+	char	*str2;
 	int		i;
 
 	i = 0;
@@ -27,5 +27,5 @@ char	ft_joinchar(char *str, char c)
 	str2[i++] = c;
 	str2[i] = 0;
 	free(str);
-	return(str2); 
+	return (str2);
 }

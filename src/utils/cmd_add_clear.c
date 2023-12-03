@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 23:44:05 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/03 01:38:25 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/03 17:10:53 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	cmd_size(t_comd *cmd)
 
 void	free_node_clean(t_comd **cmd)
 {
-	t_comd *tmp ;
-	t_comd *tmp2;
+	t_comd	*tmp ;
+	t_comd	*tmp2;
 
 	if (!cmd)
-		return;
+		return ;
 	tmp = *cmd;
-	while(tmp)
+	while (tmp)
 	{
 		tmp2 = tmp->next;
 		free_arg_cmd(tmp);
@@ -45,7 +45,7 @@ void	free_node_clean(t_comd **cmd)
 void	free_arg_cmd(t_comd *cmd)
 {
 	if (!cmd)
-		return;
+		return ;
 	free(cmd->comd);
 	free_tab(cmd->argms);
 	free(cmd);
@@ -53,14 +53,14 @@ void	free_arg_cmd(t_comd *cmd)
 
 void	add_cmd_back(t_comd **cmd, t_comd *new_c)
 {
-	t_comd *tmp;
+	t_comd	*tmp;
 
 	if (!cmd || !new_c)
-		return;
+		return ;
 	if (!*cmd)
 	{
 		*cmd = new_c;
-		return;
+		return ;
 	}
 	tmp = ft_lastcmd_node(*cmd);
 	tmp->next = new_c;

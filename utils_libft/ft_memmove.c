@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tab.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 01:10:17 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/03 17:52:29 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/03 17:57:11 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/03 18:09:28 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	free_tab(char **tab)
+void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	int	i;
+	unsigned char	*dt;
+	unsigned char	*sc;
 
-	i = 0;
-	while (tab && tab[i])
-		free(tab[i++]);
-	free(tab);
+	if (!dst && !src)
+		return (NULL);
+	dt = (unsigned char *)dst;
+	sc = (unsigned char *)src;
+	if (dt > sc)
+	{
+		while (n-- > 0)
+			dt[n] = sc[n];
+	}
+	else
+		ft_memcpy(dst, src, n);
+	return (dst);
 }

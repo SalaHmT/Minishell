@@ -6,14 +6,13 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/02 23:00:27 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:51:44 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 
-int main(int ac, char **str, char **env)
+int	main(int ac, char **str, char **env)
 {
-   
-    return (0);
+	return (0);
 }

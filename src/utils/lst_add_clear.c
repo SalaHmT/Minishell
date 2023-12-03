@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 22:39:04 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/02 23:33:58 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:04:07 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	free_clen_data(t_tkn **lst)
 {
-	t_tkn 	*tmp;
+	t_tkn	*tmp;
 	t_tkn	*tmp2;
 
 	tmp = *lst;
 	if (!tmp)
-		return;
+		return ;
 	while (tmp)
 	{
-		tmp2 =tmp->next;
+		tmp2 = tmp->next;
 		free_val_tkn(tmp);
 		tmp = tmp2;
 	}
@@ -32,7 +32,7 @@ void	free_clen_data(t_tkn **lst)
 void	free_val_tkn(t_tkn *lst)
 {
 	if (lst == NULL)
-		return;
+		return ;
 	free(lst->val);
 	free(lst);
 }
@@ -42,14 +42,14 @@ void	ft_add_tkn_back(t_tkn **data, t_tkn *new_dt)
 	t_tkn	*tmp;
 
 	tmp = *data;
-	if(!(*data))
+	if (!(*data))
 	{
 		new_dt->prev = NULL;
 		*data = new_dt;
 	}
 	else
 	{
-		while(tmp->next)
+		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new_dt;
 		new_dt->prev = tmp;
