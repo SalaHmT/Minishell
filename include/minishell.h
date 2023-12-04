@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/04 21:32:24 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/04 23:12:23 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,12 @@ int		check_quotes(char *cmd, int idx);
 int		check_red_pipe(char c, char *cmd, int idx);
 void	check_sin_quotes(char *cmd, int *i, int *check);
 int		check_both_quotes(char *cmd);
+//lexer
+int		is_red_char(char c);
 
-
+//expand....
+int		is_quotes_exist(char *str);
+int		cont_no_wspace(char *str);
 
 // utils_libft....
 void	free_tab(char **tab);
