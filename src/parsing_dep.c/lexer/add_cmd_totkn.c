@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   add_cmd_totkn.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 17:51:52 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/04 21:50:55 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/04 21:43:27 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/04 21:46:48 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../../include/minishell.h"
 
-char	*ft_strdup(const char *str)
+int	is_red_char(char c)
 {
-	char	*strr;
-	size_t	len;
-
-	len = ft_strlen(str);
-	strr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!strr)
-		return (NULL);
-	ft_memmove(strr, str, len + 1);
-	if (!strr)
-		return (strr);
+	if (c && (c == '|' || c == '>' || c == '<' || c == ' '))
+		return (1);
+	return (0);
 }
