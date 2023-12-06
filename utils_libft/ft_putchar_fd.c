@@ -6,13 +6,13 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:22:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/06 21:24:11 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/06 21:34:18 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_putchar(char c, int fd)
 {
 	write (fd, &c, 1);
 }
