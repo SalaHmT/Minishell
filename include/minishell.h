@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/06 21:25:56 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/06 21:43:40 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	check_sin_quotes(char *cmd, int *i, int *check);
 int		check_both_quotes(char *cmd);
 void	command_init(t_comd	*cmd);
 int		is_reder(int var);
+int	check_reder_tkn(t_tkn **data);
 //lexer
 int		is_red_char(char c);
 
