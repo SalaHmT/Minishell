@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/04 23:12:23 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/06 21:25:56 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int		check_quotes(char *cmd, int idx);
 int		check_red_pipe(char c, char *cmd, int idx);
 void	check_sin_quotes(char *cmd, int *i, int *check);
 int		check_both_quotes(char *cmd);
+void	command_init(t_comd	*cmd);
+int		is_reder(int var);
 //lexer
 int		is_red_char(char c);
 
@@ -123,5 +125,7 @@ int		ft_isalnum(int c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t n);
 char	*ft_strdup(const char *str);
+void	ft_putchar_fd(char c);
+void	ft_putstr(char *str, int fd);
 
 #endif

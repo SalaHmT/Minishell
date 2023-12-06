@@ -6,11 +6,11 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 23:44:05 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/03 17:10:53 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:55:06 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 int	cmd_size(t_comd *cmd)
 {

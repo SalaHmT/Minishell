@@ -6,11 +6,11 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 22:39:04 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/03 18:04:07 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:52:02 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 void	free_clen_data(t_tkn **lst)
 {

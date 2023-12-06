@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_command.c                                      :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/06 20:59:47 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/06 21:22:44 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/06 21:24:11 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-void	command_init(t_comd	*cmd)
+void	ft_putchar_fd(char c, int fd)
 {
-	cmd->argms = NULL;
-	cmd->comd = NULL;
-	cmd->errp = 1;
-	cmd->next = NULL;
-	cmd->inp = 1;
-	cmd->outp = 0;
+	write (fd, &c, 1);
 }

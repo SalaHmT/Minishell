@@ -6,11 +6,11 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 02:09:07 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/03 17:44:13 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:51:12 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 void	check_sin_quotes(char *cmd, int *i, int *check)
 {

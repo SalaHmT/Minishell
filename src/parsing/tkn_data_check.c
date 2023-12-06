@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_command.c                                      :+:      :+:    :+:   */
+/*   tkn_data_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/06 20:59:47 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/06 21:06:13 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/06 21:12:17 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	command_init(t_comd	*cmd)
+int	is_reder(int var)
 {
-	cmd->argms = NULL;
-	cmd->comd = NULL;
-	cmd->errp = 1;
-	cmd->next = NULL;
-	cmd->inp = 1;
-	cmd->outp = 0;
+	if (var == HERDOC || var == OUTP || var == INP || var == PEND)
+		return (1);
+	return (0);
 }
