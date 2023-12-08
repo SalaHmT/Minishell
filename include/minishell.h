@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/06 21:43:40 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/08 19:30:15 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 	\033[1;34m║\033[34m   \033[1;31m██║╚██╔╝██║ ██║ ██║╚██╗██║ ██║ ╚════██║ ██╔══██║  ██╔══╝   ██║      ██║        \033[34m\033[1;34m║\033[34m\n\
 	\033[1;34m║\033[34m   \033[1;31m██║ ╚═╝ ██║ ██║ ██║ ╚████║ ██║ ███████║ ██║  ██║  ███████╗ ███████╗ ███████╗   \033[34m\033[1;34m║\033[34m\n\
 	\033[1;34m║\033[34m   \033[1;31m╚═╝     ╚═╝ ╚═╝ ╚═╝  ╚═══╝ ╚═╝ ╚══════╝ ╚═╝  ╚═╝  ╚══════╝ ╚══════╝ ╚══════╝   \033[34m\033[1;34m║\033[34m\n\
-	\033[1;34m╚══════════════════════════════════════════════════════════════════════════════════╝\033[34m\n"
+	\033[1;34m╚══════════════════════════════════════════════════╝\033[34m\n"
 
 //parser
 typedef struct s_comd
@@ -108,9 +108,10 @@ void	check_sin_quotes(char *cmd, int *i, int *check);
 int		check_both_quotes(char *cmd);
 void	command_init(t_comd	*cmd);
 int		is_reder(int var);
-int	check_reder_tkn(t_tkn **data);
+int		check_reder_tkn(t_tkn **data);
 //lexer
 int		is_red_char(char c);
+void	add_operator_tkn(t_tkn **data, char *cmd, int *idx);
 
 //expand....
 int		is_quotes_exist(char *str);
@@ -128,5 +129,6 @@ void	*ft_memmove(void *dst, const void *src, size_t n);
 char	*ft_strdup(const char *str);
 void	ft_putchar_fd(char c);
 void	ft_putstr(char *str, int fd);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
