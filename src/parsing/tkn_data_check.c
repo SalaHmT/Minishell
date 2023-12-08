@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:06:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/07 20:27:18 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/08 23:16:17 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,13 @@ int	check_herdoc_tkn(t_tkn **data)
 	return (0);
 }
 
-int check_pipe_red_herdoc(t_tkn **data)
+int	check_pipe_red_herdoc(t_tkn **data)
 {
 	if (check_herdoc_tkn(data))
-		return ();
+		return (g_lb_data.ext_status = ERR1, 1);
+	if (check_reder_tkn(data))
+		return (g_lb_data.ext_status = SNTX_ERR, 1);
+	if (check_pipe_tkn(data))
+		return (g_lb_data.ext_status = SNTX_ERR, 1);
+	return (0);
 }

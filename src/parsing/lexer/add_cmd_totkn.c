@@ -6,11 +6,32 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:43:27 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/08 19:29:56 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/08 21:13:51 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
+
+void	cmd_to_str_add(t_tkn **data, char *cmd, int *idx)
+{
+	char	*ptr;
+	int		i;
+
+	i = (*idx);
+	ptr = ft_strdup("");
+	while (cmd[i] && !check_red_pipe(cmd[i], cmd, i))
+	{
+		ptr = ft_joinchar(ptr, cmd[i]);
+		if ((cmd[i + 1] && is_red_char(cmd[i + 1]) && !check_quotes(cmd, i + 1))
+			|| !cmd[i + 1] || (cmd[i + 1] == ' ' && !check_quotes(cmd, i +1)))
+		{
+			ft_add_tkn_back(data, ft_new_tkn(ptr));
+			break ;
+		}
+		i++;
+	}
+	(*idx) = i;
+}
 
 int	is_red_char(char c)
 {
