@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/08 23:17:20 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/08 23:22:36 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int			check_pipe_red_herdoc(t_tkn **data);
 int			is_red_char(char c);
 void		add_operator_tkn(t_tkn **data, char *cmd, int *idx);
 void		cmd_to_str_add(t_tkn **data, char *cmd, int *idx);
-static int	set_type_arg(t_tkn **data)
+static int	set_type_arg(t_tkn **data);
 //expand....
 int			is_quotes_exist(char *str);
 int			cont_no_wspace(char *str);

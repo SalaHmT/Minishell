@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:55:46 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/08 22:52:43 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/08 23:23:21 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,3 @@ static int	set_type_arg(t_tkn **data)
 		(*data)->type = ARG;
 	return (1);
 }
-
-
