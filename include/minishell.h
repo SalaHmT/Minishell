@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/08 23:22:36 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/09 18:47:56 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ void		command_init(t_comd	*cmd);
 int			is_reder(int var);
 int			check_reder_tkn(t_tkn **data);
 int			check_pipe_red_herdoc(t_tkn **data);
+int			is_a_directory(char *str);
+int			check_cmd_isdretory(char *str);
 //lexer
 int			is_red_char(char c);
 void		add_operator_tkn(t_tkn **data, char *cmd, int *idx);
