@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/09 18:47:56 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:08:10 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,8 @@ static int	set_type_arg(t_tkn **data);
 //expand....
 int			is_quotes_exist(char *str);
 int			cont_no_wspace(char *str);
-
+char		*if_contain_env_var(char *str);
+char		*extract_value_checkname(char *val, int	*idx);
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
@@ -137,9 +138,16 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(char *s1, char *s2);
 //execution
 
+typedef struct s_list
+{
+	char			*content;
+	struct s_list	*next;
+}	t_list;
+
 typedef struct s_data
 {
-	int		ext_status;
+	int			ext_status;
+	t_list		*env;
 }				t_data;
 
 t_data	g_lb_data;
