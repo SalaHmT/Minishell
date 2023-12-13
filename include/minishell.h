@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 11:56:09 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:29:15 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void		free_arg_cmd(t_comd *cmd);
 void		free_node_clean(t_comd **cmd);
 int			cmd_size(t_comd *cmd);
 // parsing ...
-int			ischar(int c);
+int			is_val_char(int c);
 int			check_quotes(char *cmd, int idx);
 int			check_red_pipe(char c, char *cmd, int idx);
 void		check_sin_quotes(char *cmd, int *i, int *check);
@@ -123,7 +123,8 @@ int			cont_no_wspace(char *str);
 char		*if_contain_env_var(char *str);
 char		*extract_value_checkname(char *val, int	*idx);
 void		get_val_concat(char	*val, int *i, char **str, int *flg);
-
+void		append_char_str(char *val, char **str, int i);
+char		expand_var_char(char *val);
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);

@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 02:09:07 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/06 19:51:12 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:15:13 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_sin_quotes(char *cmd, int *i, int *check)
 	}
 }
 
-int	ischar(int c)
+int	is_val_char(int c)
 {
 	if (c && (ft_isalnum(c) || c == '$' || c == '_' || c == '?'))
 		return (1);

@@ -6,11 +6,26 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 11:56:37 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:09:33 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
+// In summary, the ft_getchar function is responsible 
+// for appending characters to the string pointed to by
+//  *str based on certain conditions related to single quotes,
+//   double quotes, and the result of the ft_quotes function. It's
+//    a part of a larger process where characters are being processed
+//     based on specific criteria related to quotes.
+void	append_char_str(char *val, char **str, int i)
+{
+	if (val[i] != '\'' && val[i] != '\"')
+		*str = ft_joinchar(*str, val[i]);
+	if (val[i] == '\'' && check_quotes(val, i) == 1)
+		*str = ft_joinchar(*str, val[i]);
+	if (val[i] == '\"' && check_quotes(val, i) == 2)
+		*str = ft_joinchar(*str, val[i]);
+}
 
 char	*if_contain_env_var(char *str)
 {
