@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 12:09:33 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:10:55 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,23 @@ void	get_val_concat(char	*val, int *i, char **str, int *flg)
 		tmp = extract_value_checkname(val, i);
 	*str = ft_strjoin(*str, tmp);
 	free (tmp);
+}
+// In summary, this function generates a unique filename for a temporary file
+//  by appending a number to a fixed prefix ("/tmp/hd_"). It iterates 
+//  and increments the number until it finds a filename that does not exist 
+//  in the "/tmp" directory, and then it returns that unique filename.
+
+char	*expand_delim(char *delim)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = ft_strdup("");
+	while (delim[i])
+	{
+		append_char_str(delim, &str, i);
+		i++;
+	}
+	return (str);
 }

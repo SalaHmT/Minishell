@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 17:44:05 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:19:12 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,10 @@ void		get_val_concat(char	*val, int *i, char **str, int *flg);
 void		append_char_str(char *val, char **str, int i);
 char		expand_var_char(char *val);
 char		*expand_var_str(char *val);
-
+char		*expand_delim(char *delim);
+// heredoc.....
+char		*generate_name_tmpfile(void);
+void		heredoc_signal(int sig);
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
@@ -157,6 +160,8 @@ typedef struct s_data
 {
 	int			ext_status;
 	t_list		*env;
+	int			sig;
+	int			sigflg;
 }				t_data;
 
 t_data	g_lb_data;
