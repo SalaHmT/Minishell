@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 11:09:28 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:56:37 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char	*if_contain_env_var(char *str)
 // function extracts a variable name
 // from the input string, searches for its
 //  value using the <if_contain_env_var> function,
-//   and returns the value. It handles cases 
-//   where the variable is not in quotes and is 
+//   and returns the value. It handles cases
+//   where the variable is not in quotes and is
 //   followed by alphanumeric characters or underscores.
 
 char	*extract_value_checkname(char *val, int	*idx)
@@ -58,4 +58,20 @@ char	*extract_value_checkname(char *val, int	*idx)
 	ptr = if_contain_env_var(str);
 	free(str);
 	return (ptr);
+}
+
+void	get_val_concat(char	*val, int *i, char **str, int *flg)
+{
+	char	*tmp;
+
+	*flg = 1;
+	if (val[*i + 1] == '?')
+	{
+		(*i)++;
+		tmp = ft_itoa(g_lb_data.ext_status);
+	}
+	else
+		tmp = extract_value_checkname(val, i);
+	*str = ft_strjoin(*str, tmp);
+	free (tmp);
 }

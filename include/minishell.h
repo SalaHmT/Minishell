@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 11:08:10 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:56:09 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ int			is_quotes_exist(char *str);
 int			cont_no_wspace(char *str);
 char		*if_contain_env_var(char *str);
 char		*extract_value_checkname(char *val, int	*idx);
+void		get_val_concat(char	*val, int *i, char **str, int *flg);
+
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
@@ -136,6 +138,8 @@ void		ft_putchar_fd(char c);
 void		ft_putstr(char *str, int fd);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(char *s1, char *s2);
+char		*ft_strjoin(char *s1, char const *s2);
+char		*ft_itoa(int nbr);
 //execution
 
 typedef struct s_list
