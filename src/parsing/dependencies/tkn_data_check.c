@@ -6,11 +6,11 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:06:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/08 23:16:17 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:24:22 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 int	is_reder(int var)
 {

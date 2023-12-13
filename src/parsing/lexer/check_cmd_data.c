@@ -6,11 +6,11 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:55:46 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 17:43:33 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 20:24:39 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../include/minishell.h"
 
 static int	set_type_arg(t_tkn **data)
 {
