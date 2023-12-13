@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:55:46 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/08 23:23:21 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:43:33 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,27 @@ static int	set_type_arg(t_tkn **data)
 	else
 		(*data)->type = ARG;
 	return (1);
+}
+
+void	modify_cmd_if(t_tkn	**data)
+{
+	t_tkn	*ptr;
+
+	ptr = *data;
+	while (ptr)
+	{
+		set_type_arg(&ptr);
+		if (ptr->type == POUT || ptr->type == OUTF
+			|| ptr->type != INF)
+			ptr->val = expand_var_str(ptr->val);
+		else if (ptr->type != DELIM)
+		{
+			if (ft_strchr(ptr->val, '$') && is_quotes_exist(ptr->val))
+				ptr->flg = 1;
+			else
+				ptr->flg = 0;
+			ptr->val = expand_var_char(ptr->val);
+		}
+		ptr = ptr->next;
+	}
 }

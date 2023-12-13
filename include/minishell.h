@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 12:29:15 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:44:05 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int			is_red_char(char c);
 void		add_operator_tkn(t_tkn **data, char *cmd, int *idx);
 void		cmd_to_str_add(t_tkn **data, char *cmd, int *idx);
 static int	set_type_arg(t_tkn **data);
+void		modify_cmd_if(t_tkn	**data);
 //expand....
 int			is_quotes_exist(char *str);
 int			cont_no_wspace(char *str);
@@ -125,6 +126,8 @@ char		*extract_value_checkname(char *val, int	*idx);
 void		get_val_concat(char	*val, int *i, char **str, int *flg);
 void		append_char_str(char *val, char **str, int i);
 char		expand_var_char(char *val);
+char		*expand_var_str(char *val);
+
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
@@ -141,6 +144,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(char *s1, char *s2);
 char		*ft_strjoin(char *s1, char const *s2);
 char		*ft_itoa(int nbr);
+char		*ft_strchr(const char *str, int c);
 //execution
 
 typedef struct s_list
