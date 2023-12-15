@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 18:48:14 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:14:39 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ void		*ft_calloc(size_t nbr, size_t size);
 void		ft_bzero(void *str, size_t nb);
 char		**ft_split(const char *str, char delimiter);
 char		**ft_realloc(char **tab, char *str);
+void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
 //execution
 
 typedef struct s_list
