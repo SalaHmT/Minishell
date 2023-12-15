@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 20:19:12 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:40:53 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,23 @@
 # include <sys/wait.h>   // for wait, waitpid
 # include <sys/types.h>  // for getpid
 # include <errno.h>
+
+# define GREEN "\033[1;32m"
+# define RED "\033[1;31m"
+# define BLUE "\033[1;34m"
+# define YELLOW "\033[1;33m"
+# define CYAN "\033[1;36m"
+# define MAGENTA "\033[1;35m"
+# define WHITE "\033[1;37m"
+# define BLACK "\033[1;30m"
+# define BOLD "\033[1m"
+# define UNDERLINE "\033[4m"
+# define BLINK "\033[5m"
+# define REVERSE "\033[7m"
+# define HIDDEN "\033[8m"
+# define BGBLACK "\033[40m"
+# define BGRED "\033[41m"
+# define RESET "\033[0m"
 
 # define WELCOME  "\n \
 	\033[1;34m╔══════════════════════════════════════════════════════════════════════════════════╗\033[34m\n\
@@ -107,6 +124,8 @@ int			check_red_pipe(char c, char *cmd, int idx);
 void		check_sin_quotes(char *cmd, int *i, int *check);
 int			check_both_quotes(char *cmd);
 void		command_init(t_comd	*cmd);
+void		check_update_cmd(t_comd **new_c);
+void		add_cmd_list(t_comd **cmd, t_comd **new_c);
 int			is_reder(int var);
 int			check_reder_tkn(t_tkn **data);
 int			check_pipe_red_herdoc(t_tkn **data);
@@ -125,12 +144,14 @@ char		*if_contain_env_var(char *str);
 char		*extract_value_checkname(char *val, int	*idx);
 void		get_val_concat(char	*val, int *i, char **str, int *flg);
 void		append_char_str(char *val, char **str, int i);
-char		expand_var_char(char *val);
+char		*expand_var_char(char *val);
 char		*expand_var_str(char *val);
 char		*expand_delim(char *delim);
+void		expand_check_update_cmdargs(t_tkn *ptr, t_comd *new_c);
 // heredoc.....
 char		*generate_name_tmpfile(void);
 void		heredoc_signal(int sig);
+int			hdoc_rd_handle_wt(char *line, char *delim, int fd, char *delimiter);
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
@@ -148,18 +169,30 @@ int			ft_strcmp(char *s1, char *s2);
 char		*ft_strjoin(char *s1, char const *s2);
 char		*ft_itoa(int nbr);
 char		*ft_strchr(const char *str, int c);
+void		*ft_calloc(size_t nbr, size_t size);
+void		ft_bzero(void *str, size_t nb);
+char		**ft_split(const char *str, char delimiter);
+char		**ft_realloc(char **tab, char *str);
 //execution
 
-typedef struct s_list
+// typedef struct s_list
+// {
+// 	char			*content;
+// 	struct s_list	*next;
+// }	t_list;
+typedef struct s_envp
 {
-	char			*content;
-	struct s_list	*next;
-}	t_list;
+	bool			is_envp;
+	char			*key;
+	char			*value;
+	struct s_envp	*next;
+}				t_envp;
 
 typedef struct s_data
 {
 	int			ext_status;
-	t_list		*env;
+	t_envp		*env;
+	//t_list		*env;
 	int			sig;
 	int			sigflg;
 }				t_data;

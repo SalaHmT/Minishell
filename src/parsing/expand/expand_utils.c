@@ -6,12 +6,12 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 20:10:55 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:45:03 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
-// In summary, the ft_getchar function is responsible 
+// In summary, the ft_getchar function is responsible
 // for appending characters to the string pointed to by
 //  *str based on certain conditions related to single quotes,
 //   double quotes, and the result of the ft_quotes function. It's
@@ -27,17 +27,18 @@ void	append_char_str(char *val, char **str, int i)
 		*str = ft_joinchar(*str, val[i]);
 }
 
+//t_list	*ptr;
 char	*if_contain_env_var(char *str)
 {
-	t_list	*ptr;
-	int		len;
-	char	*copy;
+	t_envp		*ptr;
+	int			len;
+	char		*copy;
 
 	ptr = g_lb_data.env;
 	len = ft_strlen(str);
 	while (ptr && str[0])
 	{
-		copy = ptr->content;
+		copy = ptr->value;
 		if (copy[len] && !ft_strncmp(copy, str, len)
 			&& copy[len] == '=' && copy[len + 1])
 			return (ft_strdup(copy + len + 1));
@@ -91,8 +92,8 @@ void	get_val_concat(char	*val, int *i, char **str, int *flg)
 	free (tmp);
 }
 // In summary, this function generates a unique filename for a temporary file
-//  by appending a number to a fixed prefix ("/tmp/hd_"). It iterates 
-//  and increments the number until it finds a filename that does not exist 
+//  by appending a number to a fixed prefix ("/tmp/hd_"). It iterates
+//  and increments the number until it finds a filename that does not exist
 //  in the "/tmp" directory, and then it returns that unique filename.
 
 char	*expand_delim(char *delim)

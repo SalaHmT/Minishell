@@ -6,15 +6,37 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:11:27 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 12:28:49 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:38:38 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
-// function processes each character in the value array, expanding 
+
+// function processes token values, updates the arguments of a t_cmd structure
+//based on certain conditions, and then triggers further command processing.
+void	expand_check_update_cmdargs(t_tkn *ptr, t_comd *new_c)
+{
+	int		i;
+	char	**trim;
+
+	i = -1;
+	if (ptr->flg && ft_strchr(ptr->val, ' '))
+	{
+		trim = ft_split(ptr->val, ' ');
+		while (trim[++i])
+			new_c->argms = ft_realloc(new_c->argms, trim[i]);
+		free_tab(trim);
+	}
+	else if (ft_strlen(ptr->val))
+		new_c->argms = ft_realloc(new_c->argms, ptr->val);
+	if (new_c->argms)
+		check_update_cmd(&new_c);
+}
+
+// function processes each character in the value array, expanding
 // variables and characters based on specific conditions, and finally
 //  returns the expanded string after freeing the original value.
-char	expand_var_char(char *val)
+char	*expand_var_char(char *val)
 {
 	char	*str;
 	int		i;

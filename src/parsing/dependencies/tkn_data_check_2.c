@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 23:21:50 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 20:24:17 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/15 00:40:13 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_cmd_isdretory(char *str)
 
 	if (str && is_a_directory(str))
 	{
-		if (!str)
+		if (!str[1])
 		{
 			(ft_putstr("bashn't: ", 2), ft_putstr(str, 2));
 			ft_putstr(" :is a directory\n", 2);

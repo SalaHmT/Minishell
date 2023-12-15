@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 20:24:30 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:41:15 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,20 @@ void	command_init(t_comd	*cmd)
 	cmd->inp = 1;
 	cmd->outp = 0;
 }
+
+void	add_cmd_list(t_comd **cmd, t_comd **new_c)
+{
+	add_cmd_back(cmd, *new_c);
+	*new_c = (t_comd *)malloc(sizeof(t_comd));
+	command_init(*new_c);
+}
+
+void	check_update_cmd(t_comd **new_c)
+{
+	if ((*new_c)->comd)
+		free ((*new_c)->comd);
+	(*new_c)->comd = ft_strdup((*new_c)->argms[0]);
+	if (check_cmd_isdretory((*new_c)->comd))
+		(*new_c)->inp = -1;
+}
+
