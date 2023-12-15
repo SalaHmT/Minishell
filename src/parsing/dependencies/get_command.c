@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 18:41:15 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:48:25 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void	check_update_cmd(t_comd **new_c)
 	if (check_cmd_isdretory((*new_c)->comd))
 		(*new_c)->inp = -1;
 }
-

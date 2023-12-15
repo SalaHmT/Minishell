@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/14 17:45:03 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:48:33 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	append_char_str(char *val, char **str, int i)
 		*str = ft_joinchar(*str, val[i]);
 }
 
-//t_list	*ptr;
 char	*if_contain_env_var(char *str)
 {
-	t_envp		*ptr;
+	t_list		*ptr;
 	int			len;
 	char		*copy;
 
@@ -38,7 +37,7 @@ char	*if_contain_env_var(char *str)
 	len = ft_strlen(str);
 	while (ptr && str[0])
 	{
-		copy = ptr->value;
+		copy = ptr->content;
 		if (copy[len] && !ft_strncmp(copy, str, len)
 			&& copy[len] == '=' && copy[len + 1])
 			return (ft_strdup(copy + len + 1));

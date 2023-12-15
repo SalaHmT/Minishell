@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 18:40:53 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:48:14 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,24 +175,16 @@ char		**ft_split(const char *str, char delimiter);
 char		**ft_realloc(char **tab, char *str);
 //execution
 
-// typedef struct s_list
-// {
-// 	char			*content;
-// 	struct s_list	*next;
-// }	t_list;
-typedef struct s_envp
+typedef struct s_list
 {
-	bool			is_envp;
-	char			*key;
-	char			*value;
-	struct s_envp	*next;
-}				t_envp;
+	char			*content;
+	struct s_list	*next;
+}	t_list;
 
 typedef struct s_data
 {
 	int			ext_status;
-	t_envp		*env;
-	//t_list		*env;
+	t_list		*env;
 	int			sig;
 	int			sigflg;
 }				t_data;
