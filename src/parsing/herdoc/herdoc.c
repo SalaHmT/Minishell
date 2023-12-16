@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:52:39 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/16 21:24:23 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:43:04 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,26 @@ char	*hdoc_create_wr_tofile(char *delim)
 	return (name);
 }
 
+// it seems like this function is involved in processing "here documents"
+int	process_heredoc(t_tkn	**data)
+{
+	t_tkn	*ptr;
+	char	*filename;
+
+	ptr = *data;
+	while (ptr && !g_lb_data.sig)
+	{
+		if (ptr->type == HERDOC)
+		{
+			filename = hdoc_create_wr_tofile(ptr->next->val);
+			if (!filename)
+				return (1);
+			free(ptr->next->val);
+			ptr->next->val = filename;
+		}
+		ptr = ptr->next;
+	}
+	if (g_lb_data.sig)
+		return (1);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/16 21:24:08 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:42:54 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ char		*generate_name_tmpfile(void);
 void		heredoc_signal(int sig);
 int			hdoc_rd_handle_wt(char *line, char *delim, int fd, char *delimiter);
 char		*hdoc_create_wr_tofile(char *delim);
+int			process_heredoc(t_tkn	**data);
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
