@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/16 21:42:54 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/16 22:00:09 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int			check_reder_tkn(t_tkn **data);
 int			check_pipe_red_herdoc(t_tkn **data);
 int			is_a_directory(char *str);
 int			check_cmd_isdretory(char *str);
+void		handle_get_cmd(t_tkn **data, t_comd **cmd);
 //in_out_file...
 void		update_outfile(t_comd **command, char *file_path, t_tkn *token);
 void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
