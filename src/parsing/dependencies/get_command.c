@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 18:48:25 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:05:58 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,17 @@ void	check_update_cmd(t_comd **new_c)
 	(*new_c)->comd = ft_strdup((*new_c)->argms[0]);
 	if (check_cmd_isdretory((*new_c)->comd))
 		(*new_c)->inp = -1;
+}
+// his code seems to be handling the expansion and manipulation
+//  of command arguments based on certain conditions and the contents
+//   of the t_tkn structure ptr.
+void	handle_get_cmd(t_tkn **data, t_comd **cmd)
+{
+	t_tkn	*ptr;
+	t_comd	*new_c;
+
+	new_c = NULL;
+	add_cmd_list(cmd, &new_c);
+	ptr = *data;
+	if ()
 }

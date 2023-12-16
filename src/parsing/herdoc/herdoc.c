@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:52:39 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/14 21:42:38 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:24:23 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,26 @@ int	hdoc_read_handle_write(char *line, char *delim, int fd, char *delimiter)
 	free (line);
 	return (0);
 }
+
+// From the context provided, it seems like this function is involved
+//  in handling a "here document" in the C program. The purpose appears
+//   to be to create and write to a file based on the provided delimiter
+//    and then return the name of the created file. However, the specific
+//     details of the ft_namegenerator,
+char	*hdoc_create_wr_tofile(char *delim)
+{
+	char	*dlim;
+	char	*name;
+	char	*line;
+	int		fd;
+
+	name = generate_name_tmpfile();
+	line = NULL;
+	fd = open(name, O_TRUNC | O_CREAT | O_RDWR, 0777);
+	while (1 && fd != -1)
+		if (hdoc_read_handle_write(line, dlim, fd, delim))
+			break ;
+	close (fd);
+	return (name);
+}
+

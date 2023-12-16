@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 20:14:39 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:24:08 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,12 @@ int			check_reder_tkn(t_tkn **data);
 int			check_pipe_red_herdoc(t_tkn **data);
 int			is_a_directory(char *str);
 int			check_cmd_isdretory(char *str);
+//in_out_file...
+void		update_outfile(t_comd **command, char *file_path, t_tkn *token);
+void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
+void		check_append_outerr(t_comd **cmd, char val, t_tkn *ptr);
+int			check_err_pipe(t_tkn *data);
+void		handle_in_out(t_tkn *ptr, t_comd **cmd);
 //lexer
 int			is_red_char(char c);
 void		add_operator_tkn(t_tkn **data, char *cmd, int *idx);
@@ -152,6 +158,7 @@ void		expand_check_update_cmdargs(t_tkn *ptr, t_comd *new_c);
 char		*generate_name_tmpfile(void);
 void		heredoc_signal(int sig);
 int			hdoc_rd_handle_wt(char *line, char *delim, int fd, char *delimiter);
+char		*hdoc_create_wr_tofile(char *delim);
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
@@ -162,7 +169,7 @@ int			ft_isalnum(int c);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t n);
 char		*ft_strdup(const char *str);
-void		ft_putchar_fd(char c);
+void		ft_putchar(char c);
 void		ft_putstr(char *str, int fd);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(char *s1, char *s2);
