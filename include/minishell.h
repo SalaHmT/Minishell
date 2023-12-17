@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/17 01:05:04 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/17 02:33:46 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,11 @@ void		handle_get_cmd(t_tkn **data, t_comd **cmd);
 int			check_syx_quotes_err(char *line);
 int			tokenize_inp_cmd(char *cmd, t_tkn **data);
 int			process_and_validate_cmd(char *line, t_tkn *data, t_comd **cmd);
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+//signal....main
+void		handle_signal_ctrl_c(int sig);
+void		handle_signal_in_out(void);
+
 //in_out_file...
 void		update_outfile(t_comd **command, char *file_path, t_tkn *token);
 void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
@@ -200,6 +205,8 @@ typedef struct s_data
 	t_list		*env;
 	int			sig;
 	int			sigflg;
+	int			f_stdin;
+	int			f_stdout;
 }				t_data;
 
 t_data	g_lb_data;
