@@ -1,16 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tkn_data_check_2.c                                 :+:      :+:    :+:   */
+/*   tkn_data_check_part2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 23:21:50 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 00:40:13 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/16 22:55:16 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/16 23:27:01 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
+
+// This function appears to be responsible for checking
+// for syntax errors related to quotes in the input line.
+// If a syntax error is detected, it sets the global
+// exit status and prints an error message before returning a non-zero value.
+int	check_syx_quotes_err(char *line)
+{
+	char	*car;
+
+	if (check_both_quotes(line))
+	{
+		if (check_both_quotes(line) == 1)
+			car = "\"\n";
+		else
+			car = "'\n";
+		g_lb_data.ext_status = SNTX_ERR;
+		ft_putstr("bashn't: syntax error near unexpected token ", 2);
+		ft_putstr(car, 2);
+		return (1);
+	}
+	return (0);
+}
 
 int	is_a_directory(char *str)
 {

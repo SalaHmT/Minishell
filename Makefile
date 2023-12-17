@@ -6,7 +6,7 @@
 #    By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 21:34:54 by shamsate          #+#    #+#              #
-#    Updated: 2023/12/02 21:35:02 by shamsate         ###   ########.fr        #
+#    Updated: 2023/12/17 01:23:39 by shamsate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,21 +31,24 @@ HEADER  = include/minishell.h
 
 O_DIR   := OBJ_DER
 
-PARS = $(addprefix src/parsing/, input_cmd.c signal_mshell.c mini_shell_w.c add_arg.c)
+PARS = $(addprefix src/parsing/, dependencies/check_utils_synx.c dependencies/cmd_add_clear.c dependencies/get_command.c \
+	dependencies/in_out_file.c dependencies/lst_add_clear.c dependencies/tkn_data_check.c dependencies/tkn_data_check_part2.c \
+	dependencies/tokenizer_and_start.c lexer/add_cmd_token.c lexer/check_cmd_data.c expand/expand_utils.c expand/name_expand.c\
+	lexer/expand.c heredoc/heredoc_utils.c heredoc/heredoc.c)
 
 
-BUIL = $(addprefix src/builtins/, shell_pwd.c shell_echo.c find_p.c shell_exit.c shell_env.c shell_cd.c)
+BUIL = $(addprefix src/execution/built_in/, )
 
 
-EXEC = $(addprefix src/executable/, mini_execute.c)
+EXEC = $(addprefix src/execution/, )
 
 
-UTIL = $(addprefix src/utils/, is_all_digit.c ft_substr.c ft_strlen.c ft_strcmp.c ft_strjoin.c ft_strdup.c \
-	ft_split.c ft_putstr_fd.c ft_putchar_fd.c atoi_exit.c ft_lstadd_back.c ft_lstlast.c size_cmd_list.c \
-	ft_lstnew.c ft_calloc.c ft_strncmp.c)
+UTIL = $(addprefix /utils_libft/, free_tab.c ft_bzero.c ft_strlen.c ft_strcmp.c ft_joinstr.c ft_strdup.c \
+	ft_split.c ft_putstr_fd.c ft_putchar_fd.c itoa.c ft_strchr.c ft_realloc.c ft_memmove.c \
+	ft_lft_memcpy.c ft_calloc.c ft_strncmp.c ft_joinchar.c ft_isdigit.c ft_isalpha.c ft_isalnum.c)
 
 
-M_SRCS = minishell.c $(UTIL) $(EXEC) $(PARS) $(BUIL)
+M_SRCS = main.c $(UTIL) $(EXEC) $(PARS) $(BUIL)
 
 M_OBJS = $(patsubst %.c,$(O_DIR)/%.o,$(M_SRCS))
 
