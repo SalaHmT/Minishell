@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 01:19:41 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/17 01:19:44 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 05:02:24 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,25 @@
 //function is responsible for reading input lines, handling
 // the interruption signal, writing input lines to a file descriptor,
 //  and performing necessary memory management.
-int	hdoc_read_handle_write(char *line, char *delim, int fd, char *delimiter)
+int	hdoc_read_handle_write(char *line, t_context *context, int fd, \
+	char *delimiter)
 {
 	signal(SIGINT, heredoc_signal);
 	line = readline(">");
 	if (!line)
-		return (g_lb_data.sigflg = 1, free(delim), free(line), 1);
+		return (context->data->sigflg = 1, free(context->data->delim), \
+		free(line), 1);
 	if (line[0])
 	{
-		if (!strcmp(line, delim))
-			return (free(delim), free(line), 1);
+		if (!strcmp(line, context->data->delim))
+			return (free(context->data->delim), free(line), 1);
 		if (is_quotes_exist(delimiter))
 			line = expand_var_char(line);
 		ft_putstr(line, fd);
 		ft_putstr("\n", fd);
 	}
-	else if (ft_strlen(delim) == 0)
-		return (free(delim), free(line), 1);
+	else if (ft_strlen(context->data->delim) == 0)
+		return (free(context->data->delim), free(line), 1);
 	free (line);
 	return (0);
 }
@@ -43,29 +45,29 @@ int	hdoc_read_handle_write(char *line, char *delim, int fd, char *delimiter)
 //     details of the ft_namegenerator,
 char	*hdoc_create_wr_tofile(char *delim)
 {
-	char	*dlim;
-	char	*name;
-	char	*line;
-	int		fd;
+	t_context	*dlim;
+	char		*name;
+	char		*line;
+	int			fd;
 
 	name = generate_name_tmpfile();
 	line = NULL;
 	fd = open(name, O_TRUNC | O_CREAT | O_RDWR, 0777);
 	while (1 && fd != -1)
-		if (hdoc_read_handle_write(line, dlim, fd, delim))
+		if (hdoc_read_handle_write(line, dlim->data->delim, fd, delim))
 			break ;
 	close (fd);
 	return (name);
 }
 
 // it seems like this function is involved in processing "here documents"
-int	process_heredoc(t_tkn	**data)
+int	process_heredoc(t_tkn	**data, t_context *context)
 {
 	t_tkn	*ptr;
 	char	*filename;
 
 	ptr = *data;
-	while (ptr && !g_lb_data.sig)
+	while (ptr && (!(context->data->sig)))
 	{
 		if (ptr->type == HERDOC)
 		{
@@ -77,7 +79,7 @@ int	process_heredoc(t_tkn	**data)
 		}
 		ptr = ptr->next;
 	}
-	if (g_lb_data.sig)
+	if (context->data->sig)
 		return (1);
 	return (0);
 }

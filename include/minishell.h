@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/17 02:33:46 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 06:56:35 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,17 +135,18 @@ void		handle_get_cmd(t_tkn **data, t_comd **cmd);
 int			check_syx_quotes_err(char *line);
 int			tokenize_inp_cmd(char *cmd, t_tkn **data);
 int			process_and_validate_cmd(char *line, t_tkn *data, t_comd **cmd);
+t_context	*initialize_context(t_data *data);
 //-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 //signal....main
-void		handle_signal_ctrl_c(int sig);
-void		handle_signal_in_out(void);
+void		handle_signal_ctrl_c(int sig, t_context *context);
+void		handle_signal_in_out(t_context *context);
 
 //in_out_file...
 void		update_outfile(t_comd **command, char *file_path, t_tkn *token);
 void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
 void		check_append_outerr(t_comd **cmd, char val, t_tkn *ptr);
 int			check_err_pipe(t_tkn *data);
-void		handle_in_out(t_tkn *ptr, t_comd **cmd);
+void		handle_in_out(t_tkn *ptr, t_comd **cmd, t_context *context);
 //lexer
 int			is_red_char(char c);
 void		add_operator_tkn(t_tkn **data, char *cmd, int *idx);
@@ -155,9 +156,9 @@ void		modify_cmd_if(t_tkn	**data);
 //expand....
 int			is_quotes_exist(char *str);
 int			cont_no_wspace(char *str);
-char		*if_contain_env_var(char *str);
-char		*extract_value_checkname(char *val, int	*idx);
-void		get_val_concat(char	*val, int *i, char **str, int *flg);
+char		*if_contain_env_var(char *str, t_context *context);
+char		*extract_value_checkname(char *val, int	*idx, t_context *context);
+void		get_val_concat(char	*val, int *i, char **str, t_context *s_context);
 void		append_char_str(char *val, char **str, int i);
 char		*expand_var_char(char *val);
 char		*expand_var_str(char *val);
@@ -165,10 +166,10 @@ char		*expand_delim(char *delim);
 void		expand_check_update_cmdargs(t_tkn *ptr, t_comd *new_c);
 // heredoc.....
 char		*generate_name_tmpfile(void);
-void		heredoc_signal(int sig);
+void		heredoc_signal(int sig, t_context *context);
 int			hdoc_rd_handle_wt(char *line, char *delim, int fd, char *delimiter);
 char		*hdoc_create_wr_tofile(char *delim);
-int			process_heredoc(t_tkn	**data);
+int			process_heredoc(t_tkn	**data, t_context *context);
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
@@ -191,6 +192,8 @@ void		ft_bzero(void *str, size_t nb);
 char		**ft_split(const char *str, char delimiter);
 char		**ft_realloc(char **tab, char *str);
 void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
+void		loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, \
+	t_context *context);
 //execution
 
 typedef struct s_list
@@ -199,16 +202,22 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+typedef struct s_context
+{
+	t_data	*data;// Pointer to the t_data struct
+	// Add other fields as needed for sharing data across functions
+}				t_context;
 typedef struct s_data
 {
-	int			ext_status;
 	t_list		*env;
 	int			sig;
 	int			sigflg;
 	int			f_stdin;
 	int			f_stdout;
+	int			*flg;
+	char		*delim;
 }				t_data;
 
-t_data	g_lb_data;
+int			g_ext_status;
 
 #endif

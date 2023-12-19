@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 18:48:33 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 05:24:00 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	append_char_str(char *val, char **str, int i)
 		*str = ft_joinchar(*str, val[i]);
 }
 
-char	*if_contain_env_var(char *str)
+char	*if_contain_env_var(char *str, t_context *context)
 {
 	t_list		*ptr;
 	int			len;
 	char		*copy;
 
-	ptr = g_lb_data.env;
+	ptr = context->data->env;
 	len = ft_strlen(str);
 	while (ptr && str[0])
 	{
@@ -52,7 +52,7 @@ char	*if_contain_env_var(char *str)
 //   where the variable is not in quotes and is
 //   followed by alphanumeric characters or underscores.
 
-char	*extract_value_checkname(char *val, int	*idx)
+char	*extract_value_checkname(char *val, int	*idx, t_context *context)
 {
 	char	*ptr;
 	char	*str;
@@ -70,23 +70,23 @@ char	*extract_value_checkname(char *val, int	*idx)
 		str = ft_joinchar(str, val[i]);
 	i--;
 	*idx = i;
-	ptr = if_contain_env_var(str);
+	ptr = if_contain_env_var(str, context);
 	free(str);
 	return (ptr);
 }
 
-void	get_val_concat(char	*val, int *i, char **str, int *flg)
+void	get_val_concat(char	*val, int *i, char **str, t_context *context)
 {
 	char	*tmp;
 
-	*flg = 1;
+	context->data->flg = 1;
 	if (val[*i + 1] == '?')
 	{
 		(*i)++;
-		tmp = ft_itoa(g_lb_data.ext_status);
+		tmp = ft_itoa(g_ext_status);
 	}
 	else
-		tmp = extract_value_checkname(val, i);
+		tmp = extract_value_checkname(val, i, context->data->flg);
 	*str = ft_strjoin(*str, tmp);
 	free (tmp);
 }
