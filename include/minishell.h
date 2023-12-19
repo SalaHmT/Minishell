@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/19 06:56:35 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:44:10 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ typedef struct s_comd
 	struct s_comd	*next;
 }					t_comd;
 
-typedef struct s_tkn
+typedef struct s_tkn // ls -la | grep "text"
 {
-	char			*val;
+	char			*val; // 
 	t_types			type;
 	int				error;
 	int				flg;
@@ -131,10 +131,11 @@ int			check_reder_tkn(t_tkn **data);
 int			check_pipe_red_herdoc(t_tkn **data);
 int			is_a_directory(char *str);
 int			check_cmd_isdretory(char *str);
-void		handle_get_cmd(t_tkn **data, t_comd **cmd);
+void		handle_get_cmd(t_tkn **data, t_comd **cmd, t_context *context);
 int			check_syx_quotes_err(char *line);
 int			tokenize_inp_cmd(char *cmd, t_tkn **data);
-int			process_and_validate_cmd(char *line, t_tkn *data, t_comd **cmd);
+int			process_and_validate_cmd(char *line, t_tkn *data, t_comd **cmd, \
+	t_context *context);
 t_context	*initialize_context(t_data *data);
 //-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 //signal....main

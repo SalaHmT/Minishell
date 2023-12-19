@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/19 06:31:45 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:34:13 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,13 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 		}
 		if (ln[0])
 		{
-		//marwane part.......
+			//marwane part.......
+			if (process_and_validate_cmd(ln, data, &cmd, t_context *context))
+			{
+			/* marane */
+				free_node_clean()
+			}
+
 		}
 		free(ln);
 	}

@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 22:55:16 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/16 23:27:01 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:03:00 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	check_syx_quotes_err(char *line)
 			car = "\"\n";
 		else
 			car = "'\n";
-		g_lb_data.ext_status = SNTX_ERR;
-		ft_putstr("bashn't: syntax error near unexpected token ", 2);
+		g_ext_status = SNTX_ERR;
+		ft_putstr("Minishell: syntax error near unexpected token ", 2);
 		ft_putstr(car, 2);
 		return (1);
 	}
@@ -56,20 +56,20 @@ int	check_cmd_isdretory(char *str)
 	{
 		if (!str[1])
 		{
-			(ft_putstr("bashn't: ", 2), ft_putstr(str, 2));
+			(ft_putstr("Minishell: ", 2), ft_putstr(str, 2));
 			ft_putstr(" :is a directory\n", 2);
-			return (g_lb_data.ext_status = CMD_EXE_FAILED, 1);
+			return (g_ext_status = CMD_EXE_FAILED, 1);
 		}
 		else
 		{
 			dir = opendir(str);
 			if (dir)
 			{
-				(ft_putstr("bashn't: ", 2), ft_putstr(str, 2));
+				(ft_putstr("Minishell: ", 2), ft_putstr(str, 2));
 				ft_putstr(" :is a directory\n", 2);
 				if (dir)
 					closedir(dir);
-				return (g_lb_data.ext_status = CMD_EXE_FAILED, 1);
+				return (g_ext_status = CMD_EXE_FAILED, 1);
 			}
 		}
 	}

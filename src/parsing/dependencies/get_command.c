@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/16 21:59:28 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:12:31 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	check_update_cmd(t_comd **new_c)
 // his code seems to be handling the expansion and manipulation
 //  of command arguments based on certain conditions and the contents
 //   of the t_tkn structure ptr.
-void	handle_get_cmd(t_tkn **data, t_comd **cmd)
+void	handle_get_cmd(t_tkn **data, t_comd **cmd, t_context *context)
 {
 	t_tkn	*ptr;
 	t_comd	*new_c;
@@ -49,7 +49,7 @@ void	handle_get_cmd(t_tkn **data, t_comd **cmd)
 	new_c = NULL;
 	add_cmd_list(cmd, &new_c);
 	ptr = *data;
-	if (process_heredoc(data))
+	if (process_heredoc(data, context))
 		return (free_node_clean(&new_c));
 	while (ptr)
 	{
@@ -57,7 +57,7 @@ void	handle_get_cmd(t_tkn **data, t_comd **cmd)
 			expand_check_update_cmdargs(ptr, new_c);
 		else if (ptr->type == PEND || ptr->type == HERDOC
 			|| ptr->type == INF || ptr->type == OUTF)
-			handle_in_out(ptr, &new_c);
+			handle_in_out(ptr, &new_c, context);
 		if ((ptr->next && ptr->next->type == PIPE) || ptr->next == NULL)
 			add_cmd_list(cmd, &new_c);
 		ptr = ptr->next;

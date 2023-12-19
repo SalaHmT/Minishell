@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 23:29:28 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/17 01:04:35 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:13:12 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,16 @@ int	tokenize_inp_cmd(char *cmd, t_tkn **data)
 //   command generation, data cleanup, and signal handling
 //    to ensure the proper initiation of the command processing flow
 
-int	process_and_validate_cmd(char *line, t_tkn *data, t_comd **cmd)
+int	process_and_validate_cmd(char *line, t_tkn *data, t_comd **cmd, \
+	t_context *context)
 {
 	if (check_syx_quotes_err(line))
 		return (0);
 	if (tokenize_inp_cmd(line, &data))
 		return (0);
-	handle_get_cmd(&data, cmd);
+	handle_get_cmd(&data, cmd, context);
 	free_clen_data(&data);
-	if (g_lb_data.sig == 1)
+	if (context->data->sig == 1)
 		return (0);
 	return (1);
 }

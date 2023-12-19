@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 19:52:12 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/16 19:31:01 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:11:08 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	check_red_open(t_comd **cmd, char *val, t_tkn *ptr)
 {
 	if (!ft_strcmp(val, "\b"))
 	{
-		g_lb_data.ext_status = 1;
-		ft_putstr("bashn't: ambiguous redirect\n", 2);
+		g_ext_status = 1;
+		ft_putstr("Minishell: ambiguous redirect\n", 2);
 		(*cmd)->inp = -1;
 		(*cmd)->errp = 0;
-		g_lb_data.ext_status = ERRR;
+		g_ext_status = ERRR;
 		ptr->error = 1;
 	}
 	if ((*cmd)->inp != -1)
@@ -34,11 +34,11 @@ void	check_red_open(t_comd **cmd, char *val, t_tkn *ptr)
 		(*cmd)->inp = open(val, O_RDONLY);
 		if ((*cmd)->inp == -1)
 		{
-			g_lb_data.ext_status = 1;
-			ft_putstr("bashn't: ", 2);
+			g_ext_status = 1;
+			ft_putstr("Minishell: ", 2);
 			perror(val);
 			(*cmd)->errp = 0;
-			g_lb_data.ext_status = ERRR;
+			g_ext_status = ERRR;
 			ptr->error = 1;
 		}
 	}
@@ -51,8 +51,8 @@ void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
 {
 	if (!ft_strcmp(file_path, "\b"))
 	{
-		g_lb_data.ext_status = 1;
-		ft_putstr_fd("bashn't: ambiguous redirect\n", 2);
+		g_ext_status = 1;
+		ft_putstr_fd("Minishell: ambiguous redirect\n", 2);
 		(*command)->outp = -1;
 		(*command)->errp = 0;
 		token->error = 1;
@@ -62,8 +62,8 @@ void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
 		(*command)->outp = open(file_path, O_CREAT | O_TRUNC | O_RDWR, 0777);
 		if ((*command)->outp == -1)
 		{
-			g_lb_data.ext_status = 1;
-			ft_putstr_fd("bashn't: ", 2);
+			g_ext_status = 1;
+			ft_putstr_fd("Minishell: ", 2);
 			perror(file_path);
 			(*command)->errp = 0;
 			token->error = 1;
@@ -79,8 +79,8 @@ void	check_append_outerr(t_comd **cmd, char val, t_tkn *ptr)
 {
 	if (!ft_strcmp(val, "\b"))
 	{
-		g_lb_data.ext_status = 1;
-		ft_putstr("bashn't: ambiguous redirect\n", 2);
+		g_ext_status = 1;
+		ft_putstr("Minishell: ambiguous redirect\n", 2);
 		(*cmd)->outp = -1;
 		(*cmd)->errp = 0;
 		ptr->error = 1;
@@ -90,8 +90,8 @@ void	check_append_outerr(t_comd **cmd, char val, t_tkn *ptr)
 		(*cmd)->outp = open(val, O_CREAT | O_APPEND | O_RDWR, 0777);
 		if ((*cmd)->outp == -1)
 		{
-			g_lb_data.ext_status = 1;
-			ft_putstr("bashn't: ", 2);
+			g_ext_status = 1;
+			ft_putstr("Minishell: ", 2);
 			perror(val);
 			(*cmd)->errp = 0;
 			ptr->error = 1;
@@ -123,7 +123,7 @@ int	check_err_pipe(t_tkn *data)
 //  coordinating the handling of input and output operations within
 //  the context of a larger shell program.
 
-void	handle_in_out(t_tkn *ptr, t_comd **cmd)
+void	handle_in_out(t_tkn *ptr, t_comd **cmd, t_context *context)
 {
 	if (ptr->type == INF && check_err_pipe(ptr))
 		check_red_open(cmd, ptr->val, ptr);

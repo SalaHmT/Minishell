@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:06:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 20:24:22 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:06:47 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int	check_reder_tkn(t_tkn **data)
 	{
 		if (is_reder(tmp->type) && !tmp->next)
 		{
-			ft_putstr("bashn't: syntax error near" \
+			ft_putstr("Minishell: syntax error near" \
 				" unexpected token '", 2);
 			return (1);
 		}
 		if (is_reder(tmp->type) && !tmp->next
 			&& (is_reder(tmp->next->type) || tmp->next->type == PIPE))
 		{
-			ft_putstr("bashn't: syntax error near" \
+			ft_putstr("Minishell: syntax error near" \
 				" unexpected token '", 2);
 			ft_putstr(tmp->next->val, 2);
 			ft_putstr("'\n", 2);
@@ -57,13 +57,13 @@ int	check_pipe_tkn(t_tkn **data)
 		{
 			if (!ptr->next || !ptr->prev)
 			{
-				ft_putstr("bashn't: syntax error"\
+				ft_putstr("Minshell: syntax error"\
 					" near unexpected token '|'\n", 2);
 				return (1);
 			}
 			else if (ptr->next && ptr->next->type == PIPE)
 			{
-				ft_putstr("bashn't: syntax error"\
+				ft_putstr("Minishell: syntax error"\
 				" near unexpected token '||'\n", 2);
 				return (1);
 			}
@@ -88,7 +88,7 @@ int	check_herdoc_tkn(t_tkn **data)
 	}
 	if (i > 16)
 	{
-		ft_putstr("bashn't: maximum here-document count"
+		ft_putstr("Minishell: maximum here-document count"
 			" exceeded\n", 2);
 		return (1);
 	}
@@ -98,10 +98,10 @@ int	check_herdoc_tkn(t_tkn **data)
 int	check_pipe_red_herdoc(t_tkn **data)
 {
 	if (check_herdoc_tkn(data))
-		return (g_lb_data.ext_status = ERR1, 1);
+		return (g_ext_status = ERR1, 1);
 	if (check_reder_tkn(data))
-		return (g_lb_data.ext_status = SNTX_ERR, 1);
+		return (g_ext_status = SNTX_ERR, 1);
 	if (check_pipe_tkn(data))
-		return (g_lb_data.ext_status = SNTX_ERR, 1);
+		return (g_ext_status = SNTX_ERR, 1);
 	return (0);
 }
