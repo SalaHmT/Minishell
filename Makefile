@@ -6,7 +6,7 @@
 #    By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 21:34:54 by shamsate          #+#    #+#              #
-#    Updated: 2023/12/20 05:50:07 by shamsate         ###   ########.fr        #
+#    Updated: 2023/12/20 22:41:26 by shamsate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ O_DIR   := OBJ_DER
 PARS = $(addprefix src/parsing/, dependencies/check_utils_synx.c dependencies/cmd_add_clear.c dependencies/get_command.c \
 	dependencies/in_out_file.c dependencies/lst_add_clear.c dependencies/tkn_data_check.c dependencies/tkn_data_check_part2.c \
 	dependencies/tokenizer_and_start.c lexer/add_cmd_token.c lexer/check_cmd_data.c expand/expand_utils.c expand/name_expand.c\
-	lexer/expand.c heredoc/heredoc_utils.c heredoc/heredoc.c)
+	expand/expand.c heredoc/heredoc_utils.c heredoc/heredoc.c)
 
 
 BUIL = $(addprefix src/execution/built_in/, )

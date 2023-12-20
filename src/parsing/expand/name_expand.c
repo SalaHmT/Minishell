@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:47:51 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/20 06:40:59 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 22:31:34 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*expand_var_str(char *val, t_context *context)
 {
 	char	*str;
 	int		i;
-	int		*flge;
+	int		flge;
 
 	context->data->flg = 0;
 	flge = context->data->flg;
@@ -70,7 +70,7 @@ char	*expand_var_str(char *val, t_context *context)
 			&& (check_quotes(val, i) == 0 || check_quotes(val, i) == 1))
 		{
 			if (val[i] == '$' && !ft_isdigit(val[i + 1]))
-				get_val_concat(val, &i, &str, flge);
+				get_val_concat(val, &i, &str, context);
 			else
 				i++;
 		}
@@ -78,7 +78,7 @@ char	*expand_var_str(char *val, t_context *context)
 			append_char_str(val, &str, i);
 		i++;
 	}
-	if (flg && (!str[0] || cont_no_wspace(str) > 1))
+	if (flge && (!str[0] || cont_no_wspace(str) > 1))
 		return (free(val), free(str), ft_strdup("\b"));
 	return (free(val), str);
 }

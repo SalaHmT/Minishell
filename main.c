@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/20 00:21:18 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 23:23:53 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 void	handle_signal_ctrl_c(int sig, t_context *ptr)
 {
 	static t_context *context;
+	
 	if (sig == -200)
 		context = ptr;
 	if (sig == SIGINT)

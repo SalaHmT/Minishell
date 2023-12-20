@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 01:19:33 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/20 00:31:59 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 23:13:34 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@ char	*generate_name_tmpfile(void)
 	return (herdoc_namme);
 }
 
-void	heredoc_signal(int sig, t_context	*context)
+void	heredoc_signal(int sig, t_context	*ptr)
 {
+	static t_context	*context;
+
+	if (sig == -200)
+		context = ptr;
 	if (sig == SIGINT)
 	{
 		g_ext_status = 1;
@@ -50,8 +54,7 @@ t_context	*initialize_context(t_data *data)
 
 	context = (t_context *)malloc(sizeof(t_context));
 	if (context != NULL)
-	{
 		context->data = data;
-		return (context);
-	}
+		
+	return (context);
 }

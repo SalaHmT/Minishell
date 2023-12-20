@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 23:29:28 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/19 23:43:29 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 22:39:53 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //    determines the type of each token, and checks for syntax errors
 //     in the resulting token list. If a syntax error is found, it frees
 // 	 the memory and returns 1, indicating an error.
-int	tokenize_inp_cmd(char *cmd, t_tkn **data)
+int	tokenize_inp_cmd(char *cmd, t_tkn **data, t_context *context)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ int	tokenize_inp_cmd(char *cmd, t_tkn **data)
 			add_operator_tkn(data, cmd, &i);
 		i++;
 	}
-	modify_cmd_if(data);
+	modify_cmd_if(data, context);
 	if (check_pipe_red_herdoc(data))
 		return (free_clen_data(data), 1);
 	return (0);
@@ -47,7 +47,7 @@ int	process_validate_cmd(char *line, t_tkn *data, t_comd **cmd, t_context *cont)
 {
 	if (check_syx_quotes_err(line))
 		return (0);
-	if (tokenize_inp_cmd(line, &data))
+	if (tokenize_inp_cmd(line, &data, cont))
 		return (0);
 	handle_get_cmd(&data, cmd, cont);
 	free_clen_data(&data);

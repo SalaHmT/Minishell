@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 01:19:41 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/19 05:02:24 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 23:24:24 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 int	hdoc_read_handle_write(char *line, t_context *context, int fd, \
 	char *delimiter)
 {
-	signal(SIGINT, heredoc_signal);
+	heredoc_signal(-200, context);
+	signal(SIGINT, (void (*)(int))heredoc_signal);
 	line = readline(">");
 	if (!line)
 		return (context->data->sigflg = 1, free(context->data->delim), \
@@ -28,7 +29,7 @@ int	hdoc_read_handle_write(char *line, t_context *context, int fd, \
 		if (!strcmp(line, context->data->delim))
 			return (free(context->data->delim), free(line), 1);
 		if (is_quotes_exist(delimiter))
-			line = expand_var_char(line);
+			line = expand_var_char(line, context);
 		ft_putstr(line, fd);
 		ft_putstr("\n", fd);
 	}
@@ -43,18 +44,18 @@ int	hdoc_read_handle_write(char *line, t_context *context, int fd, \
 //   to be to create and write to a file based on the provided delimiter
 //    and then return the name of the created file. However, the specific
 //     details of the ft_namegenerator,
-char	*hdoc_create_wr_tofile(char *delim)
+char	*hdoc_create_wr_tofile(char *delim, t_context *dlim)
 {
-	t_context	*dlim;
 	char		*name;
 	char		*line;
 	int			fd;
 
+	dlim->data->delim = NULL;
 	name = generate_name_tmpfile();
 	line = NULL;
 	fd = open(name, O_TRUNC | O_CREAT | O_RDWR, 0777);
 	while (1 && fd != -1)
-		if (hdoc_read_handle_write(line, dlim->data->delim, fd, delim))
+		if (hdoc_read_handle_write(line, dlim, fd, delim))
 			break ;
 	close (fd);
 	return (name);
@@ -71,7 +72,7 @@ int	process_heredoc(t_tkn	**data, t_context *context)
 	{
 		if (ptr->type == HERDOC)
 		{
-			filename = hdoc_create_wr_tofile(ptr->next->val);
+			filename = hdoc_create_wr_tofile(ptr->next->val, context);
 			if (!filename)
 				return (1);
 			free(ptr->next->val);

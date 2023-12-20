@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:11:27 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 18:38:38 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 22:45:53 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ void	expand_check_update_cmdargs(t_tkn *ptr, t_comd *new_c)
 // function processes each character in the value array, expanding
 // variables and characters based on specific conditions, and finally
 //  returns the expanded string after freeing the original value.
-char	*expand_var_char(char *val)
+char	*expand_var_char(char *val, t_context *context)
 {
 	char	*str;
 	int		i;
-	int		flg;
 
-	flg = 0;
+	context->data->flg = 0;
 	i = 0;
 	str = ft_strdup("");
 	while (val[i])
@@ -51,11 +50,11 @@ char	*expand_var_char(char *val)
 			&& (check_quotes(val, i) == 0 || check_quotes(val, i) == 1))
 		{
 			if (val[i + 1] != '$' && !ft_isdigit(val[i + 1]))
-				get_val_concat(val, &i, &str, &flg);
+				get_val_concat(val, &i, &str, context);
 			else
 				append_char_str(val, &str, i);
 			i++;
 		}
-		return (free(val), str);
 	}
+	return (free(val), str);
 }

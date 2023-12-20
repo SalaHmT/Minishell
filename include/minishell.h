@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/20 06:35:30 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 23:21:13 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int			is_a_directory(char *str);
 int			check_cmd_isdretory(char *str);
 void		handle_get_cmd(t_tkn **data, t_comd **cmd, t_context *context);
 int			check_syx_quotes_err(char *line);
-int			tokenize_inp_cmd(char *cmd, t_tkn **data);
+int			tokenize_inp_cmd(char *cmd, t_tkn **data, t_context *context);
 int			proc_valid_cmd(char *line, t_tkn *data, t_comd **cmd, \
 	t_context *cont);
 t_context	*initialize_context(t_data *data);
@@ -178,7 +178,7 @@ void		handle_in_out(t_tkn *ptr, t_comd **cmd);
 int			is_red_char(char c);
 void		add_operator_tkn(t_tkn **data, char *cmd, int *idx);
 void		cmd_to_str_add(t_tkn **data, char *cmd, int *idx);
-void		modify_cmd_if(t_tkn	**data);
+void		modify_cmd_if(t_tkn	**data, t_context *context);
 //expand....
 int			is_quotes_exist(char *str);
 int			cont_no_wspace(char *str);
@@ -186,15 +186,15 @@ char		*if_contain_env_var(char *str, t_context *context);
 char		*extract_value_checkname(char *val, int	*idx, t_context *context);
 void		get_val_concat(char	*val, int *i, char **str, t_context *context);
 void		append_char_str(char *val, char **str, int i);
-char		*expand_var_char(char *val);
-char		*expand_var_str(char *val);
+char		*expand_var_char(char *val, t_context *context);
+char		*expand_var_str(char *val, t_context *context);
 char		*expand_delim(char *delim);
 void		expand_check_update_cmdargs(t_tkn *ptr, t_comd *new_c);
 // heredoc.....
 char		*generate_name_tmpfile(void);
 void		heredoc_signal(int sig, t_context *context);
 int			hdoc_rd_handle_wt(char *line, char *delim, int fd, char *delimiter);
-char		*hdoc_create_wr_tofile(char *delim);
+char		*hdoc_create_wr_tofile(char *delim, t_context *dlim);
 int			process_heredoc(t_tkn	**data, t_context *context);
 // utils_libft....
 void		free_tab(char **tab);
