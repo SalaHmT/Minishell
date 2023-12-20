@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/19 20:12:31 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 05:56:30 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	handle_get_cmd(t_tkn **data, t_comd **cmd, t_context *context)
 			expand_check_update_cmdargs(ptr, new_c);
 		else if (ptr->type == PEND || ptr->type == HERDOC
 			|| ptr->type == INF || ptr->type == OUTF)
-			handle_in_out(ptr, &new_c, context);
+			handle_in_out(ptr, &new_c);
 		if ((ptr->next && ptr->next->type == PIPE) || ptr->next == NULL)
 			add_cmd_list(cmd, &new_c);
 		ptr = ptr->next;

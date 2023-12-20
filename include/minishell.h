@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/19 21:44:10 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 06:35:30 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,49 @@
 	\033[1;34m║\033[34m   \033[1;31m╚═╝     ╚═╝ ╚═╝ ╚═╝  ╚═══╝ ╚═╝ ╚══════╝ ╚═╝  ╚═╝  ╚══════╝ ╚══════╝ ╚══════╝   \033[34m\033[1;34m║\033[34m\n\
 	\033[1;34m╚══════════════════════════════════════════════════╝\033[34m\n"
 
-//parser
+//parse
+typedef enum e_types
+{
+	NUl,
+	CMD,
+	ARG,
+	INF,
+	OUTF,
+	POUT,
+	DELIM,
+	OUTP,
+	PEND,
+	INP,
+	PIPE,
+	HERDOC,
+}	t_types;
+
+//execution
+typedef struct s_list
+{
+	char			*content;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_data
+{
+	t_list		*env;
+	int			sig;
+	int			sigflg;
+	int			f_stdin;
+	int			f_stdout;
+	int			flg;
+	char		*delim;
+}				t_data;
+
+typedef struct s_context
+{
+	t_data	*data;// Pointer to the t_data struct
+	// Add other fields as needed for sharing data across functions
+}				t_context;
+
+int			g_ext_status;
+
 typedef struct s_comd
 {
 	char			*comd;
@@ -72,7 +114,7 @@ typedef struct s_comd
 
 typedef struct s_tkn // ls -la | grep "text"
 {
-	char			*val; // 
+	char			*val; //
 	t_types			type;
 	int				error;
 	int				flg;
@@ -89,22 +131,6 @@ typedef enum e_err
 	CMD_NOT_EXIST = 127,
 	SNTX_ERR = 258,
 }	t_err;
-
-typedef enum e_types
-{
-	NUl,
-	CMD,
-	ARG,
-	INF,
-	OUTF,
-	POUT,
-	DELIM,
-	OUTP,
-	PEND,
-	INP,
-	PIPE,
-	HERDOC,
-}	t_types;
 
 // tkn & data list...
 t_tkn		*ft_new_tkn(char	*data);
@@ -134,10 +160,10 @@ int			check_cmd_isdretory(char *str);
 void		handle_get_cmd(t_tkn **data, t_comd **cmd, t_context *context);
 int			check_syx_quotes_err(char *line);
 int			tokenize_inp_cmd(char *cmd, t_tkn **data);
-int			process_and_validate_cmd(char *line, t_tkn *data, t_comd **cmd, \
-	t_context *context);
+int			proc_valid_cmd(char *line, t_tkn *data, t_comd **cmd, \
+	t_context *cont);
 t_context	*initialize_context(t_data *data);
-//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 //signal....main
 void		handle_signal_ctrl_c(int sig, t_context *context);
 void		handle_signal_in_out(t_context *context);
@@ -145,21 +171,20 @@ void		handle_signal_in_out(t_context *context);
 //in_out_file...
 void		update_outfile(t_comd **command, char *file_path, t_tkn *token);
 void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
-void		check_append_outerr(t_comd **cmd, char val, t_tkn *ptr);
+void		check_append_outerr(t_comd **cmd, char *val, t_tkn *ptr);
 int			check_err_pipe(t_tkn *data);
-void		handle_in_out(t_tkn *ptr, t_comd **cmd, t_context *context);
+void		handle_in_out(t_tkn *ptr, t_comd **cmd);
 //lexer
 int			is_red_char(char c);
 void		add_operator_tkn(t_tkn **data, char *cmd, int *idx);
 void		cmd_to_str_add(t_tkn **data, char *cmd, int *idx);
-static int	set_type_arg(t_tkn **data);
 void		modify_cmd_if(t_tkn	**data);
 //expand....
 int			is_quotes_exist(char *str);
 int			cont_no_wspace(char *str);
 char		*if_contain_env_var(char *str, t_context *context);
 char		*extract_value_checkname(char *val, int	*idx, t_context *context);
-void		get_val_concat(char	*val, int *i, char **str, t_context *s_context);
+void		get_val_concat(char	*val, int *i, char **str, t_context *context);
 void		append_char_str(char *val, char **str, int i);
 char		*expand_var_char(char *val);
 char		*expand_var_str(char *val);
@@ -174,14 +199,14 @@ int			process_heredoc(t_tkn	**data, t_context *context);
 // utils_libft....
 void		free_tab(char **tab);
 size_t		ft_strlen(const char *str);
-char		ft_joinchar(char *str, char c);
+char		*ft_joinchar(char *str, char c);
 int			ft_isdigit(int c);
 int			ft_isalpha(int c);
 int			ft_isalnum(int c);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t n);
 char		*ft_strdup(const char *str);
-void		ft_putchar(char c);
+void		ft_putchar(char c, int fd);
 void		ft_putstr(char *str, int fd);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(char *s1, char *s2);
@@ -190,35 +215,12 @@ char		*ft_itoa(int nbr);
 char		*ft_strchr(const char *str, int c);
 void		*ft_calloc(size_t nbr, size_t size);
 void		ft_bzero(void *str, size_t nb);
-char		**ft_split(const char *str, char delimiter);
+char		**ft_split(char const *s, char c);
 char		**ft_realloc(char **tab, char *str);
+void		*ft_memset(void *str, int c, size_t len);
 void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
 void		loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, \
 	t_context *context);
-//execution
-
-typedef struct s_list
-{
-	char			*content;
-	struct s_list	*next;
-}	t_list;
-
-typedef struct s_context
-{
-	t_data	*data;// Pointer to the t_data struct
-	// Add other fields as needed for sharing data across functions
-}				t_context;
-typedef struct s_data
-{
-	t_list		*env;
-	int			sig;
-	int			sigflg;
-	int			f_stdin;
-	int			f_stdout;
-	int			*flg;
-	char		*delim;
-}				t_data;
-
-int			g_ext_status;
+char		*ft_itoa(int nbr);
 
 #endif

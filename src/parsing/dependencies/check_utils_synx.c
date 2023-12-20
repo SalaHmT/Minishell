@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 02:09:07 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 12:15:13 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 05:53:56 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_sin_quotes(char *cmd, int *i, int *check)
 	while (cmd[*i])
 	{
 		if (cmd[*i] == '\'' && *check == 0)
-			check = 2;
+			*check = 2;
 		else if (cmd[*i] == '\'' && *check == 2)
 		{
 			*check = 0;

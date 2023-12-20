@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 19:52:12 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/19 20:11:08 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 06:01:11 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
 	if (!ft_strcmp(file_path, "\b"))
 	{
 		g_ext_status = 1;
-		ft_putstr_fd("Minishell: ambiguous redirect\n", 2);
+		ft_putstr("Minishell: ambiguous redirect\n", 2);
 		(*command)->outp = -1;
 		(*command)->errp = 0;
 		token->error = 1;
@@ -63,7 +63,7 @@ void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
 		if ((*command)->outp == -1)
 		{
 			g_ext_status = 1;
-			ft_putstr_fd("Minishell: ", 2);
+			ft_putstr("Minishell: ", 2);
 			perror(file_path);
 			(*command)->errp = 0;
 			token->error = 1;
@@ -75,7 +75,7 @@ void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
 //   created or appended to, and it updates the appropriate fields and
 //   error statuses based on the outcome of these operations.
 
-void	check_append_outerr(t_comd **cmd, char val, t_tkn *ptr)
+void	check_append_outerr(t_comd **cmd, char *val, t_tkn *ptr)
 {
 	if (!ft_strcmp(val, "\b"))
 	{
@@ -123,14 +123,14 @@ int	check_err_pipe(t_tkn *data)
 //  coordinating the handling of input and output operations within
 //  the context of a larger shell program.
 
-void	handle_in_out(t_tkn *ptr, t_comd **cmd, t_context *context)
+void	handle_in_out(t_tkn *ptr, t_comd **cmd)
 {
 	if (ptr->type == INF && check_err_pipe(ptr))
 		check_red_open(cmd, ptr->val, ptr);
 	else if (ptr->type == OUTF && check_err_pipe(ptr))
 		update_outfile(cmd, ptr->val, ptr);
 	else if (ptr->type == PEND && check_err_pipe(ptr))
-		check_append_outerr(cmd, ptr->next, ptr);
+		check_append_outerr(cmd, ptr->next->val, ptr);
 	else if (ptr->type == HERDOC && check_err_pipe(ptr))
-		check_red_open(cmd, ptr->next, ptr);
+		check_red_open(cmd, ptr->next->val, ptr);
 }

@@ -6,7 +6,7 @@
 #    By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 21:34:54 by shamsate          #+#    #+#              #
-#    Updated: 2023/12/17 01:23:39 by shamsate         ###   ########.fr        #
+#    Updated: 2023/12/20 05:50:07 by shamsate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ C_CYAN  = \033[1;36m
 C_RESET = \033[34m
 
 CC      = cc
+
+LIB = -L/Users/shamsate/.brew/opt/readline/lib
+INC = -I/Users/shamsate/.brew/opt/readline/include
 
 RM      = rm -rf
 
@@ -43,9 +46,9 @@ BUIL = $(addprefix src/execution/built_in/, )
 EXEC = $(addprefix src/execution/, )
 
 
-UTIL = $(addprefix /utils_libft/, free_tab.c ft_bzero.c ft_strlen.c ft_strcmp.c ft_joinstr.c ft_strdup.c \
-	ft_split.c ft_putstr_fd.c ft_putchar_fd.c itoa.c ft_strchr.c ft_realloc.c ft_memmove.c \
-	ft_lft_memcpy.c ft_calloc.c ft_strncmp.c ft_joinchar.c ft_isdigit.c ft_isalpha.c ft_isalnum.c)
+UTIL = $(addprefix utils_libft/, free_tab.c ft_bzero.c ft_strlen.c ft_strcmp.c ft_joinstr.c ft_strdup.c \
+	ft_split.c ft_putstr_fd.c ft_putchar_fd.c ft_itoa.c ft_strchr.c ft_realloc.c ft_memmove.c \
+	ft_memcpy.c ft_calloc.c ft_strncmp.c ft_joinchar.c ft_isdigit.c ft_isalpha.c ft_isalnum.c)
 
 
 M_SRCS = main.c $(UTIL) $(EXEC) $(PARS) $(BUIL)
@@ -79,7 +82,7 @@ Prj_Name = "\n" \
 
 $(NAME): $(M_OBJS) $(HEADER)
 	@echo $(Prj_Name)
-	@$(CC) $(CFLAGS) $(M_OBJS) $(READLINE) -o $(NAME)
+	@$(CC) $(CFLAGS) $(M_OBJS) $(READLINE)$(LIB) -o $(NAME)
 	@echo "$(C_BLUE)		✅ Compilation completed successfully!$(C_RESET)"
 
 $(O_DIR)/%.o: %.c $(HEADER)

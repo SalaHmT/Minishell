@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/19 21:50:15 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 00:21:18 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 //    state (g_lb__data.exit_status) and performs some actions to clear
 //     the input line and refresh the display to provide a smooth user
 // 	 experience when the program is interrupted.
-void	handle_signal_ctrl_c(int sig, t_context *context)
+void	handle_signal_ctrl_c(int sig, t_context *ptr)
 {
+	static t_context *context;
+	if (sig == -200)
+		context = ptr;
 	if (sig == SIGINT)
 	{
 		g_ext_status = 1;
@@ -28,6 +31,7 @@ void	handle_signal_ctrl_c(int sig, t_context *context)
 		rl_replace_line("", 1);
 		rl_on_new_line();
 	}
+	rl_on_new_line();
 	rl_redisplay();
 }
 // function is responsible for setting up signal handling and managing
@@ -42,7 +46,8 @@ void	handle_signal_in_out(t_context *context)
 	dup2(context->data->f_stdout, 1);
 	context->data->sig = 0;
 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_signal_ctrl_c);
+	handle_signal_ctrl_c(-200, context);
+	signal(SIGINT, (void (*)(int))handle_signal_ctrl_c);
 }
 
 //simple shell loop that reads input, processes commands, and executes
@@ -62,13 +67,10 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 		}
 		if (ln[0])
 		{
-			//marwane part.......
-			if (process_and_validate_cmd(ln, data, &cmd, t_context *context))
+			if (proc_valid_cmd(ln, data, &cmd, context))
 			{
-			/* marane */
 				free_node_clean(&cmd);
 			}
-
 		}
 		free(ln);
 	}
@@ -81,6 +83,8 @@ int	main(int ac, char **str, char **env)
 	t_data		*t_ptr;
 	t_context	*context;
 
+	(void)env;
+	t_ptr = NULL;
 	if (ac == 1)
 	{
 		context = initialize_context(t_ptr);

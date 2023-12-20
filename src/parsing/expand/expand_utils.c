@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/19 05:24:00 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 06:33:19 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	get_val_concat(char	*val, int *i, char **str, t_context *context)
 		tmp = ft_itoa(g_ext_status);
 	}
 	else
-		tmp = extract_value_checkname(val, i, context->data->flg);
+		tmp = extract_value_checkname(val, i, context);
 	*str = ft_strjoin(*str, tmp);
 	free (tmp);
 }

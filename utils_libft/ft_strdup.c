@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 17:51:52 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/04 21:50:55 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 05:37:53 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ char	*ft_strdup(const char *str)
 	if (!strr)
 		return (NULL);
 	ft_memmove(strr, str, len + 1);
-	if (!strr)
-		return (strr);
+	return (strr);
 }

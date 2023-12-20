@@ -6,13 +6,13 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 01:44:34 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 11:07:57 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 05:51:48 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	ft_joinchar(char *str, char c)
+char	*ft_joinchar(char *str, char c)
 {
 	char	*str2;
 	int		i;

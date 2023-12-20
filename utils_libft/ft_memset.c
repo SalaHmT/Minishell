@@ -1,56 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 11:45:31 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/20 05:49:41 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/20 04:42:49 by shamsate          #+#    #+#             */
+/*   Updated: 2023/12/20 04:45:39 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int	count_nb(int nb)
+void	*ft_memset(void *str, int c, size_t len)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*s;
 
 	i = 0;
-	if (nb <= 0)
+	s = (unsigned char *)str;
+	while (i < len)
 	{
-		i++;
-		nb *= -1;
-	}
-	while (nb)
-	{
-		nb /= 10;
+		s[i] = (unsigned char)c;
 		i++;
 	}
-	return (i);
-}
-
-char	*ft_itoa(int nbr)
-{
-	char	*out;
-	long	nb;
-	int		i;
-
-	nb = nbr;
-	i = count_nb(nb);
-	out = malloc(nb);
-	if (!out)
-		return (NULL);
-	if (nb < 0)
-	{
-		out[0] = '-';
-		nb *= -1;
-	}
-	out[i] = '\0';
-	while (i && (nb != 0 || nbr == 0))
-	{
-		out[--i] = (nb % 10) + '0';
-		nb = nb / 10;
-	}
-	return (out);
+	return (str);
 }

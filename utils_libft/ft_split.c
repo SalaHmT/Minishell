@@ -6,57 +6,21 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:17:55 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 18:20:09 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 05:45:14 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void	free_strings_and_array(char **strings, int count)
+static void	*ft_fre(char **t, int i)
 {
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		free(strings[i]);
-		i++;
-	}
-	free(strings);
+	while (i--)
+		free(t[i]);
+	free(t);
+	return (NULL);
 }
 
-static int	count_substrings(const char *str, char delimiter)
-{
-	int	count;
-	int	i;
-
-	count = 0;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != delimiter)
-		{
-			count++;
-			while (str[i] != '\0' && str[i] != delimiter)
-				i++;
-		}
-		else
-			i++;
-	}
-	return (count);
-}
-
-static int	substring_length(const char *str, char delimiter)
-{
-	int	length;
-
-	length = 0;
-	while (str[length] != '\0' && str[length] != delimiter)
-		length++;
-	return (length);
-}
-
-static char	**fill_substrs(char **substrings, const char *str, char delimiter)
+static int	ft_count(char *s, char c)
 {
 	int	i;
 	int	j;
@@ -65,36 +29,70 @@ static char	**fill_substrs(char **substrings, const char *str, char delimiter)
 	i = 0;
 	j = 0;
 	k = 0;
-	while (str[i])
+	while (s[i])
 	{
-		while (str[i] && str[i] == delimiter)
+		while (s[i] && s[i] == c)
 			i++;
-		if (str[i])
+		while (s[i] && s[i] != c)
 		{
-			substrings[j] = malloc(sizeof(char) * (ft_count2((char *)str + i, \
-				delimiter) + 1));
-			if (!substrings[j])
-				return (ft_fre(substrings, j));
-			while (str[i] && str[i] != delimiter)
-				substrings[j][k++] = str[i++];
-			substrings[j++][k] = 0;
+			i++;
+			j++;
+		}
+		if (j > 0)
+		{
+			k++;
+			j = 0;
+		}
+	}
+	return (k);
+}
+
+static int	ft_count2(char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
+}
+
+static char	**ft_fill(char **t, char *s, char c)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (s[i])
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i])
+		{
+			t[j] = malloc(sizeof(char) * (ft_count2((char *)s + i, c) + 1));
+			if (!t[j])
+				return (ft_fre(t, j));
+			while (s[i] && s[i] != c)
+				t[j][k++] = s[i++];
+			t[j++][k] = 0;
 			k = 0;
 		}
 	}
-	substrings[j] = 0;
-	return (substrings);
+	t[j] = 0;
+	return (t);
 }
 
-char	**ft_split(const char *str, char delimiter)
+char	**ft_split(char const *s, char c)
 {
-	int		substrings_count;
-	char	**substrings;
+	char	**t;
 
-	if (str == NULL)
-		return (NULL);
-	substrings_count = count_substrings(str, delimiter);
-	substrings = (char **)malloc(sizeof(char *) * (substrings_count + 1));
-	if (substrings == NULL)
-		return (NULL);
-	return (fill_substrings(substrings, str, delimiter));
+	if (!s)
+		return (0);
+	t = malloc(sizeof(char *) * (ft_count((char *)s, c) + 1));
+	if (!t)
+		return (0);
+	return (ft_fill(t, (char *)s, c));
 }

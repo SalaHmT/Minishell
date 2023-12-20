@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:47:51 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/13 17:20:10 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/20 06:40:59 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ int	cont_no_wspace(char *str)
 }
 // function that expands variables in a string
 
-char	*expand_var_str(char *val)
+char	*expand_var_str(char *val, t_context *context)
 {
 	char	*str;
 	int		i;
-	int		flg;
+	int		*flge;
 
-	flg = 0;
+	context->data->flg = 0;
+	flge = context->data->flg;
 	i = 0;
 	str = ft_strdup("");
 	while (val[i])
@@ -69,7 +70,7 @@ char	*expand_var_str(char *val)
 			&& (check_quotes(val, i) == 0 || check_quotes(val, i) == 1))
 		{
 			if (val[i] == '$' && !ft_isdigit(val[i + 1]))
-				get_val_concat(val, &i, &str, &flg);
+				get_val_concat(val, &i, &str, flge);
 			else
 				i++;
 		}
