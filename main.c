@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/20 23:23:53 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/21 03:53:30 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 // 	 experience when the program is interrupted.
 void	handle_signal_ctrl_c(int sig, t_context *ptr)
 {
-	static t_context *context;
-	
+	static t_context	*context;
+
 	if (sig == -200)
 		context = ptr;
 	if (sig == SIGINT)
@@ -59,7 +59,7 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 	while (1)
 	{
 		handle_signal_in_out(context);
-		ln = readline("Minishell$ ");
+		ln = readline("Minishell:$ ");
 		context->data->sigflg = 0;
 		if (!ln)
 		{
@@ -79,26 +79,29 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 
 int	main(int ac, char **str, char **env)
 {
-	t_tkn		*data;
-	t_comd		*cmd;
-	t_data		*t_ptr;
-	t_context	*context;
+	t_tkn		*data = NULL;
+	t_comd		*cmd = NULL;
+	t_data		*t_ptr = NULL;
+	t_context	*context = NULL;
 
 	(void)env;
+	g_ext_status = 0;
 	t_ptr = NULL;
+	printf("%s\n", WELCOME);
 	if (ac == 1)
 	{
-		context = initialize_context(t_ptr);
+		context = initialize_context();
+		if (context == NULL)
+			return 0;
 		context->data->f_stdin = dup(0);
 		context->data->f_stdout = dup(1);
-		(void)**str;
-		//marwane....
-		//marwane....
+		(void)str;
 		data = malloc(sizeof(t_tkn *));
 		cmd = NULL;
 		loop_and_process_exec_cmd(data, cmd, context);
 		free(data);
 		free(context);
 	}
+
 	exit(g_ext_status);
 }

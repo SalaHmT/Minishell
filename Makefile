@@ -6,7 +6,7 @@
 #    By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 21:34:54 by shamsate          #+#    #+#              #
-#    Updated: 2023/12/20 22:41:26 by shamsate         ###   ########.fr        #
+#    Updated: 2023/12/21 02:17:39 by shamsate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,14 @@ C_BLUE  = \033[1;34m
 C_CYAN  = \033[1;36m
 C_RESET = \033[34m
 
-CC      = cc
+CC      = cc -g
 
-LIB = -L/Users/shamsate/.brew/opt/readline/lib
-INC = -I/Users/shamsate/.brew/opt/readline/include
+LIB =  -L ~/.brew/opt/readline/lib
+INC =  -I ~/.brew/opt/readline/include
 
 RM      = rm -rf
 
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -g -Wall -Wextra -Werror
 
 READLINE = -lreadline
 
@@ -40,18 +40,16 @@ PARS = $(addprefix src/parsing/, dependencies/check_utils_synx.c dependencies/cm
 	expand/expand.c heredoc/heredoc_utils.c heredoc/heredoc.c)
 
 
-BUIL = $(addprefix src/execution/built_in/, )
-
 
 EXEC = $(addprefix src/execution/, )
 
 
 UTIL = $(addprefix utils_libft/, free_tab.c ft_bzero.c ft_strlen.c ft_strcmp.c ft_joinstr.c ft_strdup.c \
 	ft_split.c ft_putstr_fd.c ft_putchar_fd.c ft_itoa.c ft_strchr.c ft_realloc.c ft_memmove.c \
-	ft_memcpy.c ft_calloc.c ft_strncmp.c ft_joinchar.c ft_isdigit.c ft_isalpha.c ft_isalnum.c)
+	ft_memcpy.c ft_calloc.c ft_strncmp.c ft_joinchar.c ft_isdigit.c ft_isalpha.c ft_isalnum.c ft_memset.c)
 
 
-M_SRCS = main.c $(UTIL) $(EXEC) $(PARS) $(BUIL)
+M_SRCS = main.c $(UTIL) $(EXEC) $(PARS)
 
 M_OBJS = $(patsubst %.c,$(O_DIR)/%.o,$(M_SRCS))
 
@@ -82,7 +80,7 @@ Prj_Name = "\n" \
 
 $(NAME): $(M_OBJS) $(HEADER)
 	@echo $(Prj_Name)
-	@$(CC) $(CFLAGS) $(M_OBJS) $(READLINE)$(LIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(M_OBJS) $(READLINE) $(LIB) -o $(NAME)
 	@echo "$(C_BLUE)		✅ Compilation completed successfully!$(C_RESET)"
 
 $(O_DIR)/%.o: %.c $(HEADER)
