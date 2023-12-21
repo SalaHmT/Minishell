@@ -6,7 +6,7 @@
 #    By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 21:34:54 by shamsate          #+#    #+#              #
-#    Updated: 2023/12/21 22:56:46 by shamsate         ###   ########.fr        #
+#    Updated: 2023/12/21 22:58:31 by shamsate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,12 +90,12 @@ $(O_DIR)/%.o: %.c $(HEADER)
 
 clean:
 	@$(RM) $(O_DIR)
-	@echo "\n-Object file Removed. ✔️\n"
+	@echo "\n- Object file Removed. ✔️\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "-Removing $(NAME) ..\n"
-	@echo "-Removed. ✔️\n"
+	@echo "- Removing $(NAME) ..\n"
+	@echo "- Removed. ✔️\n"
 
 re: fclean all
 
