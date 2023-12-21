@@ -6,7 +6,7 @@
 #    By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 21:34:54 by shamsate          #+#    #+#              #
-#    Updated: 2023/12/21 22:40:13 by shamsate         ###   ########.fr        #
+#    Updated: 2023/12/21 22:56:46 by shamsate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ C_BLUE  = \033[1;34m
 C_CYAN  = \033[1;36m
 C_RESET = \033[34m
 
-CC      = cc 
+CC      = cc
 
 LIB =  -L ~/.brew/opt/readline/lib
 INC =  -I ~/.brew/opt/readline/include
@@ -75,13 +75,13 @@ Prj_Name = "\n" \
 	$(YELLOW)██$(GREEN)║  $(YELLOW)██$(GREEN)║ $(YELLOW)███████$(GREEN)╗ $(YELLOW)███████$(GREEN)╗ $(YELLOW)███████$(GREEN)╗\n" \
 	"$(GREEN)╚═╝     $(GREEN)╚═╝ $(GREEN)╚═╝ $(GREEN)╚═╝  $(GREEN)╚═══╝ $(GREEN)╚═╝\
 	 $(GREEN)╚══════╝ $(GREEN)╚═╝  $(GREEN)╚═╝ $(GREEN)╚══════╝ $(GREEN)╚══════╝\
-	  $(GREEN)╚══════╝\n$(C_RESET)" \
+	  $(GREEN)╚══════╝\n$(C_RESET)\033[0m" \
 
 
 $(NAME): $(M_OBJS) $(HEADER)
 	@echo $(Prj_Name)
 	@$(CC) $(CFLAGS) $(M_OBJS) $(READLINE) $(LIB) -o $(NAME)
-	@echo "$(C_BLUE)		✅ Compilation completed successfully!$(C_RESET)"
+	@echo "\n 			-  Execution ready..✔️\n"
 
 $(O_DIR)/%.o: %.c $(HEADER)
 	@echo "- Making Object file $(notdir $@) from source file $(notdir $<)...\n"
@@ -90,12 +90,12 @@ $(O_DIR)/%.o: %.c $(HEADER)
 
 clean:
 	@$(RM) $(O_DIR)
-	@echo "\n-Object file Removed..✔️\n"
+	@echo "\n-Object file Removed. ✔️\n"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@echo "-Removing $(NAME) ..\n"
-	@echo "-Removed..✔️\n"
+	@echo "-Removed. ✔️\n"
 
 re: fclean all
 
