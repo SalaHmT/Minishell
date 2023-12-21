@@ -6,7 +6,7 @@
 #    By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 21:34:54 by shamsate          #+#    #+#              #
-#    Updated: 2023/12/21 06:04:37 by shamsate         ###   ########.fr        #
+#    Updated: 2023/12/21 22:40:13 by shamsate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,14 @@ C_BLUE  = \033[1;34m
 C_CYAN  = \033[1;36m
 C_RESET = \033[34m
 
-CC      = cc -g
+CC      = cc 
 
 LIB =  -L ~/.brew/opt/readline/lib
 INC =  -I ~/.brew/opt/readline/include
 
 RM      = rm -rf
 
-CFLAGS  = -g -Wall -Wextra -Werror
+CFLAGS  =   -Wall -Wextra -Werror
 
 READLINE = -lreadline
 
@@ -86,7 +86,7 @@ $(NAME): $(M_OBJS) $(HEADER)
 $(O_DIR)/%.o: %.c $(HEADER)
 	@echo "- Making Object file $(notdir $@) from source file $(notdir $<)...\n"
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 clean:
 	@$(RM) $(O_DIR)
