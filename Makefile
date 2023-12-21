@@ -6,7 +6,7 @@
 #    By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 21:34:54 by shamsate          #+#    #+#              #
-#    Updated: 2023/12/21 02:17:39 by shamsate         ###   ########.fr        #
+#    Updated: 2023/12/21 06:04:37 by shamsate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,16 +84,18 @@ $(NAME): $(M_OBJS) $(HEADER)
 	@echo "$(C_BLUE)		✅ Compilation completed successfully!$(C_RESET)"
 
 $(O_DIR)/%.o: %.c $(HEADER)
+	@echo "- Making Object file $(notdir $@) from source file $(notdir $<)...\n"
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(O_DIR)
-	@echo "$(C_CYAN)🗑️  Object Directory has been removed......$(C_RESET)"
+	@echo "\n-Object file Removed..✔️\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(C_CYAN)	🚀 'Minishell' executable has been removed.....$(C_RESET)"
+	@echo "-Removing $(NAME) ..\n"
+	@echo "-Removed..✔️\n"
 
 re: fclean all
 
