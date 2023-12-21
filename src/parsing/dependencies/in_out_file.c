@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 19:52:12 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/20 06:01:11 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/21 04:44:56 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	check_red_open(t_comd **cmd, char *val, t_tkn *ptr)
 		if ((*cmd)->inp == -1)
 		{
 			g_ext_status = 1;
-			ft_putstr("Minishell: ", 2);
-			perror(val);
+			(ft_putstr("Minishell: ", 2), perror(val));
 			(*cmd)->errp = 0;
 			g_ext_status = ERRR;
 			ptr->error = 1;

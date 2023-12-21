@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/21 03:53:30 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/21 04:48:48 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 
 int	main(int ac, char **str, char **env)
 {
-	t_tkn		*data = NULL;
-	t_comd		*cmd = NULL;
-	t_data		*t_ptr = NULL;
-	t_context	*context = NULL;
+	t_tkn		*data;
+	t_comd		*cmd;
+	t_data		*t_ptr;
+	t_context	*context;
 
 	(void)env;
 	g_ext_status = 0;
@@ -92,7 +92,7 @@ int	main(int ac, char **str, char **env)
 	{
 		context = initialize_context();
 		if (context == NULL)
-			return 0;
+			return (0);
 		context->data->f_stdin = dup(0);
 		context->data->f_stdout = dup(1);
 		(void)str;
@@ -102,6 +102,5 @@ int	main(int ac, char **str, char **env)
 		free(data);
 		free(context);
 	}
-
 	exit(g_ext_status);
 }
