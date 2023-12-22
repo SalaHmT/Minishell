@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:06:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/22 03:16:44 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/22 04:21:48 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_reder_tkn(t_tkn **data)
 		if (is_reder(tmp->type) && !tmp->next)
 		{
 			ft_putstr(":( Minishell: syntax error near" \
-				" unexpected token '", 2);
+				" unexpected token 'newline'\n", 2);
 			return (1);
 		}
 		if (is_reder(tmp->type) && !tmp->next
