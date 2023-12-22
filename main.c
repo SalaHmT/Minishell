@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/22 04:23:42 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/22 21:48:54 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 			printf("exit\n");
 			break ;
 		}
-		 if (ln[0])
+		if (ln[0])
 		{
 			if (proc_valid_cmd(ln, data, &cmd, context))
 			{
@@ -80,12 +80,10 @@ int	main(int ac, char **str, char **env)
 {
 	t_tkn		*data;
 	t_comd		*cmd;
-	t_data		*t_ptr;
 	t_context	*context;
 
 	(void)env;
 	g_ext_status = 0;
-	t_ptr = NULL;
 	printf("%s\n", WELCOME);
 	if (!isatty(0))
 		return (0);

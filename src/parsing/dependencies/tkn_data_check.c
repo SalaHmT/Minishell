@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:06:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/22 04:21:48 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/22 04:43:19 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	check_pipe_tkn(t_tkn **data)
 		{
 			if (!ptr->next || !ptr->prev)
 			{
-				ft_putstr(":( Minishell: syntax error"\
+				ft_putstr(":( Minishell: syntax error" \
 					" near unexpected token '|'\n", 2);
 				return (1);
 			}
 			else if (ptr->next && ptr->next->type == PIPE)
 			{
-				ft_putstr(":( Minishell: syntax error"\
+				ft_putstr(":( Minishell: syntax error" \
 				" near unexpected token '||'\n", 2);
 				return (1);
 			}
