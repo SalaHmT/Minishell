@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/21 04:48:48 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/22 03:33:00 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void	handle_signal_ctrl_c(int sig, t_context *ptr)
 			ft_putstr("\n", 1);
 		rl_replace_line("", 1);
 		rl_on_new_line();
+		rl_redisplay();
 	}
-	rl_on_new_line();
-	rl_redisplay();
 }
 // function is responsible for setting up signal handling and managing
 // input/output redirection for the program. It redirects standard
@@ -59,14 +58,14 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 	while (1)
 	{
 		handle_signal_in_out(context);
-		ln = readline("Minishell:$ ");
+		ln = readline(":) Minishell: $ ");
 		context->data->sigflg = 0;
 		if (!ln)
 		{
 			printf("exit\n");
 			break ;
 		}
-		if (ln[0])
+		 if (ln[0])
 		{
 			if (proc_valid_cmd(ln, data, &cmd, context))
 			{
@@ -88,6 +87,8 @@ int	main(int ac, char **str, char **env)
 	g_ext_status = 0;
 	t_ptr = NULL;
 	printf("%s\n", WELCOME);
+	if (!isatty(0))
+		return (0);
 	if (ac == 1)
 	{
 		context = initialize_context();
