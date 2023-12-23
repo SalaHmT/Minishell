@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/22 21:48:54 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/23 21:52:11 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 	while (1)
 	{
 		handle_signal_in_out(context);
-		ln = readline(":) Minishell: $ ");
+		ln = readline("\033[1;32m:)\033[0m Minishell: $ ");
 		context->data->sigflg = 0;
 		if (!ln)
 		{
@@ -76,7 +76,7 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 	}
 }
 
-int	main(int ac, char **str, char **env)
+int	main(int ac, char **env)
 {
 	t_tkn		*data;
 	t_comd		*cmd;
@@ -84,7 +84,7 @@ int	main(int ac, char **str, char **env)
 
 	(void)env;
 	g_ext_status = 0;
-	printf("%s\n", WELCOME);
+	printf("%s\n", START);
 	if (!isatty(0))
 		return (0);
 	if (ac == 1)
@@ -94,7 +94,6 @@ int	main(int ac, char **str, char **env)
 			return (0);
 		context->data->f_stdin = dup(0);
 		context->data->f_stdout = dup(1);
-		(void)str;
 		data = malloc(sizeof(t_tkn *));
 		cmd = NULL;
 		loop_and_process_exec_cmd(data, cmd, context);

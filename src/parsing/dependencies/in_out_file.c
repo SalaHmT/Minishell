@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 19:52:12 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/22 03:18:22 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/23 06:33:11 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_red_open(t_comd **cmd, char *val, t_tkn *ptr)
 	if (!ft_strcmp(val, "\b"))
 	{
 		g_ext_status = 1;
-		ft_putstr(":( Minishell: ambiguous redirect\n", 2);
+		ft_putstr("\033[1;31m:(\033[0m Minishell: ambiguous redirect\n", 2);
 		(*cmd)->inp = -1;
 		(*cmd)->errp = 0;
 		g_ext_status = ERRR;
@@ -35,7 +35,7 @@ void	check_red_open(t_comd **cmd, char *val, t_tkn *ptr)
 		if ((*cmd)->inp == -1)
 		{
 			g_ext_status = 1;
-			(ft_putstr(":( Minishell: ", 2), perror(val));
+			(ft_putstr("\033[1;31m:(\033[0m Minishell: ", 2), perror(val));
 			(*cmd)->errp = 0;
 			g_ext_status = ERRR;
 			ptr->error = 1;
@@ -51,7 +51,7 @@ void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
 	if (!ft_strcmp(file_path, "\b"))
 	{
 		g_ext_status = 1;
-		ft_putstr(":( Minishell: ambiguous redirect\n", 2);
+		ft_putstr("\033[1;31m:(\033[0m Minishell: ambiguous redirect\n", 2);
 		(*command)->outp = -1;
 		(*command)->errp = 0;
 		token->error = 1;
@@ -62,7 +62,7 @@ void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
 		if ((*command)->outp == -1)
 		{
 			g_ext_status = 1;
-			ft_putstr(":) Minishell: ", 2);
+			ft_putstr("\033[1;32m:)\033[0m Minishell: ", 2);
 			perror(file_path);
 			(*command)->errp = 0;
 			token->error = 1;
@@ -79,7 +79,7 @@ void	check_append_outerr(t_comd **cmd, char *val, t_tkn *ptr)
 	if (!ft_strcmp(val, "\b"))
 	{
 		g_ext_status = 1;
-		ft_putstr(":( Minishell: ambiguous redirect\n", 2);
+		ft_putstr("\033[1;31m:(\033[0m Minishell: ambiguous redirect\n", 2);
 		(*cmd)->outp = -1;
 		(*cmd)->errp = 0;
 		ptr->error = 1;
@@ -90,7 +90,7 @@ void	check_append_outerr(t_comd **cmd, char *val, t_tkn *ptr)
 		if ((*cmd)->outp == -1)
 		{
 			g_ext_status = 1;
-			ft_putstr(":( Minishell: ", 2);
+			ft_putstr("\033[1;31m:(\033[0m Minishell: ", 2);
 			perror(val);
 			(*cmd)->errp = 0;
 			ptr->error = 1;
