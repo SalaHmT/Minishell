@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/21 03:24:50 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 02:05:01 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ char	*extract_value_checkname(char *val, int	*idx, t_context *context)
 		&& val[i + 1] != '?' && val[i + 1] != '-')
 	{
 		while (val[i] && val[i] != '$')
+			str = ft_joinchar(str, val[i++]);
+		if (val[i] == '$')
 			str = ft_joinchar(str, val[i++]);
 	}
 	while (val[++i] && (ft_isalnum(val[i]) || val[i] == '-'))

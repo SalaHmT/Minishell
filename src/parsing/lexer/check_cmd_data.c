@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 19:55:46 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/20 22:43:37 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 03:55:42 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static int	set_type_arg(t_tkn **data)
 		(*data)->type = INP;
 	else if (ft_strcmp((*data)->val, ">") == 0)
 		(*data)->type = OUTP;
-	else if ((*data)->prev && (*data)->prev->type == PIPE)
+	else if (!(*data)->prev || (*data)->prev->type == PIPE)
 		(*data)->type = CMD;
 	else if ((*data)->prev && (*data)->prev->type == HERDOC)
 		(*data)->type = DELIM;
 	else if ((*data)->prev && (*data)->prev->type == PEND)
-		(*data)->type = OUTP ;
+		(*data)->type = POUT ;
 	else if ((*data)->prev && (*data)->prev->type == OUTP)
 		(*data)->type = OUTF;
 	else if ((*data)->prev && (*data)->prev->type == INP)
@@ -48,8 +48,10 @@ void	modify_cmd_if(t_tkn	**data, t_context *context)
 	{
 		set_type_arg(&ptr);
 		if (ptr->type == POUT || ptr->type == OUTF
-			|| ptr->type != INF)
+			|| ptr->type == INF)
+		{
 			ptr->val = expand_var_str(ptr->val, context);
+		}
 		else if (ptr->type != DELIM)
 		{
 			if (ft_strchr(ptr->val, '$') && is_quotes_exist(ptr->val))

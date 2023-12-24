@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:11:27 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/21 03:24:54 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 01:52:03 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ char	*expand_var_char(char *val, t_context *context)
 			if (val[i + 1] != '$' && !ft_isdigit(val[i + 1]))
 				get_val_concat(val, &i, &str, context);
 			else
-				append_char_str(val, &str, i);
-			i++;
+				i++;
 		}
+		else
+			append_char_str(val, &str, i);
+		i++;
 	}
 	return (free(val), str);
 }

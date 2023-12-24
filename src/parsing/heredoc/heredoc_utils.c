@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 01:19:33 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/21 04:49:51 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 05:55:58 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ char	*generate_name_tmpfile(void)
 	char	*herdoc_namme;
 
 	i = 0;
-	nbr = ft_strjoin("/tmp/hd_", nbr);
+	nbr = ft_itoa(i);
+	herdoc_namme = ft_strjoin(ft_strdup("/tmp/hd_"), nbr);
 	free (nbr);
 	while (!access(herdoc_namme, F_OK))
 	{
 		free(herdoc_namme);
 		nbr = ft_itoa(i++);
-		herdoc_namme = ft_strjoin("/tmp/hd_", nbr);
+		herdoc_namme = ft_strjoin(ft_strdup("/tmp/hd_"), nbr);
 		free(nbr);
 	}
 	return (herdoc_namme);

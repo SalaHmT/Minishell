@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/23 21:52:11 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 21:29:21 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 		}
 		if (ln[0])
 		{
+			add_history(ln);
 			if (proc_valid_cmd(ln, data, &cmd, context))
 			{
+				
 				free_node_clean(&cmd);
 			}
 		}

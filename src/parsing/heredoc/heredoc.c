@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 01:19:41 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/21 03:25:33 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 06:12:18 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	hdoc_read_handle_write(char *line, t_context *context, int fd, \
 {
 	heredoc_signal(-200, context);
 	signal(SIGINT, (void (*)(int))heredoc_signal);
-	line = readline(">");
+	line = readline("> ");
 	if (!line)
 		return (context->data->sigflg = 1, free(context->data->delim), \
 		free(line), 1);
 	if (line[0])
 	{
-		if (!strcmp(line, context->data->delim))
+		if (!ft_strcmp(line, context->data->delim))
 			return (free(context->data->delim), free(line), 1);
 		if (is_quotes_exist(delimiter))
 			line = expand_var_char(line, context);
@@ -50,8 +50,8 @@ char	*hdoc_create_wr_tofile(char *delim, t_context *dlim)
 	char		*line;
 	int			fd;
 
-	dlim->data->delim = NULL;
 	name = generate_name_tmpfile();
+	dlim->data->delim = expand_delim(delim);
 	line = NULL;
 	fd = open(name, O_TRUNC | O_CREAT | O_RDWR, 0777);
 	while (1 && fd != -1)

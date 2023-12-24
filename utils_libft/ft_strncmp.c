@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:27:40 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/08 19:02:50 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 21:44:09 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	while (str[i] && str1[i] && str[i] == str1[i] && i < n - 1)
 		i++;
-	return (str[i - str1[i]]);
+	return (str[i] - str1[i]);
 }

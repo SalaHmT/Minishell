@@ -6,12 +6,39 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 19:52:12 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/23 06:33:11 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 06:25:26 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 
+// function handles the logic for managing output file
+//  redirection in a shell program, including error
+//  handling for ambiguous redirects and file opening failures.
+
+void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
+{
+	if (!ft_strcmp(file_path, "\b"))
+	{
+		g_ext_status = 1;
+		ft_putstr("\033[1;31m:(\033[0m Minishell: ambiguous redirect\n", 2);
+		(*command)->outp = -1;
+		(*command)->errp = 0;
+		token->error = 1;
+	}
+	if ((*command)->outp != -1)
+	{
+		(*command)->outp = open(file_path, O_CREAT | O_TRUNC | O_RDWR, 0777);
+		if ((*command)->outp == -1)
+		{
+			g_ext_status = 1;
+			ft_putstr("\033[1;32m:)\033[0m Minishell: ", 2);
+			perror(file_path);
+			(*command)->errp = 0;
+			token->error = 1;
+		}
+	}
+}
 // the function seems to handle file input redirection for a shell-like program.
 //  It first checks if the value is a backspace character, and if not,
 //   it attempts to open the file specified by value for reading.
@@ -42,33 +69,7 @@ void	check_red_open(t_comd **cmd, char *val, t_tkn *ptr)
 		}
 	}
 }
-// function handles the logic for managing output file
-//  redirection in a shell program, including error
-//  handling for ambiguous redirects and file opening failures.
 
-void	update_outfile(t_comd **command, char *file_path, t_tkn *token)
-{
-	if (!ft_strcmp(file_path, "\b"))
-	{
-		g_ext_status = 1;
-		ft_putstr("\033[1;31m:(\033[0m Minishell: ambiguous redirect\n", 2);
-		(*command)->outp = -1;
-		(*command)->errp = 0;
-		token->error = 1;
-	}
-	if ((*command)->outp != -1)
-	{
-		(*command)->outp = open(file_path, O_CREAT | O_TRUNC | O_RDWR, 0777);
-		if ((*command)->outp == -1)
-		{
-			g_ext_status = 1;
-			ft_putstr("\033[1;32m:)\033[0m Minishell: ", 2);
-			perror(file_path);
-			(*command)->errp = 0;
-			token->error = 1;
-		}
-	}
-}
 // In summary, this function seems to handle file redirection and error
 //  handling in a shell-like program. It checks if the file should be
 //   created or appended to, and it updates the appropriate fields and

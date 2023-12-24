@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/20 05:56:30 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 06:37:46 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	command_init(t_comd	*cmd)
 	cmd->comd = NULL;
 	cmd->errp = 1;
 	cmd->next = NULL;
-	cmd->inp = 1;
-	cmd->outp = 0;
+	cmd->inp = 0;
+	cmd->outp = 1;
 }
 
 void	add_cmd_list(t_comd **cmd, t_comd **new_c)

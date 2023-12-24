@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 22:39:04 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/06 19:52:02 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 21:40:05 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	ft_add_tkn_back(t_tkn **data, t_tkn *new_dt)
 	}
 	else
 	{
+		if (!tmp->next)
+		{
+			tmp->next = new_dt;
+			new_dt->prev = tmp;
+			return ;
+		}
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new_dt;
