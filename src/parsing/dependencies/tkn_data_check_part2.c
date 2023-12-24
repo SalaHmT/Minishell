@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 22:55:16 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/24 21:31:39 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/24 22:51:40 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	check_syx_quotes_err(char *line)
 		else
 			car = "'\n";
 		g_ext_status = SNTX_ERR;
-		ft_putstr("\033[1;31m:(\033[0m Minishell: syntax error near \
-			unexpected token ", 2);
+		ft_putstr("\033[1;31m:(\033[0m Minishell: syntax error near" \
+			"unexpected token ", 2);
 		ft_putstr(car, 2);
 		return (1);
 	}
