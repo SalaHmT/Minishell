@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/24 02:05:01 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/25 02:00:04 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ char	*extract_value_checkname(char *val, int	*idx, t_context *context)
 	str = ft_strdup("");
 	i = *idx;
 	if (!check_quotes(val, i + 2) && !ft_isalnum(val[i + 1])
-		&& val[i + 1] != '?' && val[i + 1] != '-')
+		&& val[i + 1] != '?' && val[i + 1] != '_')
 	{
 		while (val[i] && val[i] != '$')
 			str = ft_joinchar(str, val[i++]);
 		if (val[i] == '$')
 			str = ft_joinchar(str, val[i++]);
 	}
-	while (val[++i] && (ft_isalnum(val[i]) || val[i] == '-'))
+	while (val[++i] && (ft_isalnum(val[i]) || val[i] == '_'))
 		str = ft_joinchar(str, val[i]);
 	i--;
 	*idx = i;

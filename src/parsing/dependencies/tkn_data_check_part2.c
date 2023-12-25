@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 22:55:16 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/24 22:51:40 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/25 03:29:22 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_cmd_isdretory(char *str)
 		else
 		{
 			dir = opendir(str);
-			if (!dir)
+			if (dir)
 			{
 				(ft_putstr("\033[1;31m:(\033[0m Minishell: ", 2), \
 				(ft_putstr(str, 2), ft_putstr(" :is a directory\n", 2)));
