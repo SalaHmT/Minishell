@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:27:13 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/24 06:37:46 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/26 17:39:34 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	add_cmd_list(t_comd **cmd, t_comd **new_c)
 {
 	add_cmd_back(cmd, *new_c);
 	*new_c = (t_comd *)malloc(sizeof(t_comd));
+	if (*new_c == NULL)
+		return ;
 	command_init(*new_c);
 }
 

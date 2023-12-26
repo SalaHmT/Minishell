@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   init_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdoulahi <mdoulahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 17:51:52 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/25 20:27:09 by mdoulahi         ###   ########.fr       */
+/*   Created: 2023/12/26 02:20:38 by mdoulahi          #+#    #+#             */
+/*   Updated: 2023/12/26 02:21:07 by mdoulahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-char	*ft_strdup(const char *str)
+t_tkn	*init(t_context *context)
 {
-	char	*strr;
-	size_t	len;
+	t_tkn	*data;
 
-	if (str == NULL)
-		return (NULL);
-	len = ft_strlen(str);
-	strr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!strr)
-		return (NULL);
-	ft_memmove(strr, str, len + 1);
-	return (strr);
+	if (!context)
+		exit(1);
+	data = malloc(sizeof(t_tkn *));
+	if (!data)
+		exit(1);
+	return (data);
 }

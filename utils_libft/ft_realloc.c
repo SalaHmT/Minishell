@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:21:36 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/15 18:28:22 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/26 17:34:50 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	**ft_realloc(char **tab, char *str)
 	while (tab && tab[i])
 		i++;
 	out = malloc(sizeof(char *) * (i + 2));
+	if (!out)
+		return (NULL);
 	i = 0;
 	while (tab && tab[i])
 	{

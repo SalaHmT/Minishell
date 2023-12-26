@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdoulahi <mdoulahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:31:32 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/25 02:00:04 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/26 00:28:09 by mdoulahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	append_char_str(char *val, char **str, int i)
 
 char	*if_contain_env_var(char *str, t_context *context)
 {
-	t_list		*ptr;
+	t_envp		*ptr;
 	int			len;
 	char		*copy;
 

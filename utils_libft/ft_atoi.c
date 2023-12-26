@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdoulahi <mdoulahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 17:51:52 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/25 20:27:09 by mdoulahi         ###   ########.fr       */
+/*   Created: 2023/10/30 13:33:22 by mdoulahi          #+#    #+#             */
+/*   Updated: 2023/12/23 00:50:20 by mdoulahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_strdup(const char *str)
+int	ft_atoi(const char *str)
 {
-	char	*strr;
-	size_t	len;
+	int	nb;
+	int	i;
+	int	signal;
 
-	if (str == NULL)
-		return (NULL);
-	len = ft_strlen(str);
-	strr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!strr)
-		return (NULL);
-	ft_memmove(strr, str, len + 1);
-	return (strr);
+	nb = 0;
+	i = 0;
+	signal = 1;
+	while (str[i] && (str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			signal = -1;
+		i++;
+	}
+	while (str[i] && ft_isdigit(str[i]))
+		nb = nb * 10 + str[i++] - 48;
+	return (nb * signal);
 }

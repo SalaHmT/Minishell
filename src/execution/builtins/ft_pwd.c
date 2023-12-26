@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_joinchar.c                                      :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 01:44:34 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/26 17:39:15 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/06 19:43:13 by mdoulahi          #+#    #+#             */
+/*   Updated: 2023/12/26 17:51:28 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../../include/minishell.h"
 
-char	*ft_joinchar(char *str, char c)
+void	ft_pwd(t_info *data, t_comd *cmd)
 {
-	char	*str2;
-	int		i;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	str2 = (char *)malloc(ft_strlen(str) + 2);
-	if (!str2)
-		return (NULL);
-	while (str[i])
-	{
-		str2[i] = str[i];
-		i++;
-	}
-	str2[i++] = c;
-	str2[i] = 0;
-	free(str);
-	return (str2);
+	ft_putstr(data->pwd_value, cmd->outp);
+	ft_putstr("\n", cmd->outp);
+	g_ext_status = 0;
 }

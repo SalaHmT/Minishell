@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdoulahi <mdoulahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 01:19:33 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/24 05:55:58 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/26 02:16:03 by mdoulahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	heredoc_signal(int sig, t_context	*ptr)
 	}
 }
 
-t_context	*initialize_context(void)
+t_context	*initialize_context(t_envp *envp)
 {
 	t_context	*context;
 
@@ -59,5 +59,8 @@ t_context	*initialize_context(void)
 	context->data = malloc(sizeof(t_data));
 	if (!context->data)
 		return (NULL);
+	context->data->env = envp;
+	context->data->f_stdin = dup(0);
+	context->data->f_stdout = dup(1);
 	return (context);
 }

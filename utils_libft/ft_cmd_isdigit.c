@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_joinchar.c                                      :+:      :+:    :+:   */
+/*   ft_cmd_isdigit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdoulahi <mdoulahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 01:44:34 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/26 17:39:15 by shamsate         ###   ########.fr       */
+/*   Created: 2023/12/07 12:57:46 by mdoulahi          #+#    #+#             */
+/*   Updated: 2023/12/23 00:46:04 by mdoulahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_joinchar(char *str, char c)
+bool	ft_cmd_isdigit(char *str)
 {
-	char	*str2;
-	int		i;
+	int	i;
 
 	i = 0;
-	if (!str)
-		return (NULL);
-	str2 = (char *)malloc(ft_strlen(str) + 2);
-	if (!str2)
-		return (NULL);
+	if (str[i] == '-')
+		i++;
 	while (str[i])
 	{
-		str2[i] = str[i];
+		if (!ft_isdigit(str[i]))
+			return (false);
 		i++;
 	}
-	str2[i++] = c;
-	str2[i] = 0;
-	free(str);
-	return (str2);
+	return (true);
 }

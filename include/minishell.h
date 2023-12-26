@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdoulahi <mdoulahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 17:28:44 by shamsate          #+#    #+#             */
-/*   Updated: 2023/12/24 06:18:17 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/26 02:21:23 by mdoulahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,26 @@
 	\033[1;31m                                                             \
 	  BY: R4v3n. \033[34m\033[0m\n"
 
+typedef struct s_envp
+{
+	char			*content;
+	bool			is_envp;
+	char			*key;
+	char			*value;
+	struct s_envp	*next;
+}				t_envp;
+
+typedef struct s_info
+{
+	char	*input;
+	char	**command;
+	char	**envp_array;
+	char	*pwd_key;
+	char	*pwd_value;
+	bool	allowed_path;
+	t_envp	*envp;
+}				t_info;
+
 //parse
 typedef enum e_types
 {
@@ -85,7 +105,7 @@ typedef struct s_list
 
 typedef struct s_data
 {
-	t_list		*env;
+	t_envp		*env;
 	int			sig;
 	int			sigflg;
 	int			f_stdin;
@@ -96,11 +116,10 @@ typedef struct s_data
 
 typedef struct s_context
 {
-	t_data	*data;// Pointer to the t_data struct
-	// Add other fields as needed for sharing data across functions
+	t_data	*data;
 }				t_context;
 
-int			g_ext_status;
+int	g_ext_status;
 
 typedef struct s_comd
 {
@@ -132,8 +151,79 @@ typedef enum e_err
 	SNTX_ERR = 258,
 }	t_err;
 
+//////////////////////////////////////////////////////////////////////////////
+
+// pipes
+void		excute(t_comd *cmd, t_context *context, t_info *info);
+void		final_execute(t_comd *cmd, t_info *info);
+void		first_pipe(int **fd, int *i, t_comd *cmd, t_info *info);
+void		middle_pipe(int **fd, int *i, t_comd *cmd, t_info *info);
+void		last_pipe(int **fd, int *i, t_comd *cmd, t_info *info);
+void		execute_builtins(t_comd *cmd, t_info *info);
+
+	// tools
+int			**create_fds(int size);
+int			ft_cmd_len(t_comd *cmd);
+void		close_fds_and_free_and_wait_to_set_status(int **fd,
+				t_comd *cmd);
+int			are_builin(t_comd *cmd);
+
+// tools
+void		ft_print_err(char *str, int fd);
+t_tkn		*init(t_context *context);
+
+// initialization
+t_info		*initialize_data(char **envp);
+
+// builtins
+void		ft_export_update_content(t_info *info);
+void		handle_builtins(t_info *data);
+void		ft_pwd(t_info *data, t_comd *cmd);
+void		ft_cd(t_comd *cmd, t_info *data);
+void		ft_env(t_comd *cmd, t_info *data);
+void		ft_echo(t_comd *cmd);
+void		ft_unset(t_comd *cmd, t_info *info);
+void		ft_exit(t_comd *cmd);
+void		ft_export(t_comd *cmd, t_info *data);
+
+// execution
+void		ft_execve(t_comd *cmd, t_info *data);
+
+// free
+void		free_array(char **array);
+void		free_t_envp(t_envp	*envp);
+// void	free_t_data(t_info	*data);
+void		free_t_info(t_info	*data);
+
+// t_envp tools
+bool		check_is_valid_arg_for_export(char *str);
+void		ft_declare_export(t_info *data, t_comd *cmd);
+void		ft_add_env(t_info *data, char *str);
+void		ft_append_env(t_info *data, char *str);
+bool		ft_is_key_exist(t_info *data, char *key);
+void		add_back_t_envp(t_envp **envp_list, t_envp *new);
+void		replace_old_t_env_value(t_info *data, char *key, char *value);
+
+// t_envp getters
+char		*ft_get_key(char *str);
+char		*ft_get_value(char *str);
+char		*ft_get_env(t_info *data, char *key);
+t_envp		*create_t_envp(char *key, char *value);
+
+// execve tools
+char		**ft_get_path(t_info *data);
+int			ft_t_envp_size(t_envp *envp);
+char		**ft_env_to_array(t_envp *envp);
+char		**ft_get_execve_args(t_comd *cmd, t_info *data);
+bool		check_command_if_it_exists_in_current_dir(t_comd *cmd,
+				char **command);
+bool		check_command_if_it_exists_in_path(t_comd *cmd,
+				char **path, char **command);
+
+//////////////////////////////////////////////////////////////////////////////
+
 // tkn & data list...
-t_tkn		*ft_new_tkn(char	*data);
+t_tkn		*ft_new_tkn(char *data);
 void		ft_add_tkn_back(t_tkn **data, t_tkn *new_dt);
 void		free_val_tkn(t_tkn *lst);
 void		free_clen_data(t_tkn **lst);
@@ -160,9 +250,9 @@ int			check_cmd_isdretory(char *str);
 void		handle_get_cmd(t_tkn **data, t_comd **cmd, t_context *context);
 int			check_syx_quotes_err(char *line);
 int			tokenize_inp_cmd(char *cmd, t_tkn **data, t_context *context);
-int			proc_valid_cmd(char *line, t_tkn *data, t_comd **cmd, \
-	t_context *cont);
-t_context	*initialize_context(void);
+int			proc_valid_cmd(char *line, t_tkn *data, t_comd **cmd,
+				t_context *cont);
+t_context	*initialize_context(t_envp *envp);
 //-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 //signal....main
 void		handle_signal_ctrl_c(int sig, t_context *context);
@@ -219,8 +309,10 @@ char		**ft_split(char const *s, char c);
 char		**ft_realloc(char **tab, char *str);
 void		*ft_memset(void *str, int c, size_t len);
 void		check_red_open(t_comd **cmd, char *val, t_tkn *ptr);
-void		loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, \
-	t_context *context);
-char		*ft_itoa(int nbr);
+// void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, \
+// 	t_context *context);
+int			ft_atoi(const char *str);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+bool		ft_cmd_isdigit(char *str);
 
 #endif

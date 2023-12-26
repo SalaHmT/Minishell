@@ -6,7 +6,7 @@
 /*   By: shamsate <shamsate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 17:56:46 by ylamsiah          #+#    #+#             */
-/*   Updated: 2023/12/25 02:36:46 by shamsate         ###   ########.fr       */
+/*   Updated: 2023/12/26 17:30:55 by shamsate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	handle_signal_ctrl_c(int sig, t_context *ptr)
 
 	if (sig == -200)
 		context = ptr;
+	if (waitpid(-1, NULL, WNOHANG) == 0)
+	{
+		printf("\n");
+		return ;
+	}
 	if (sig == SIGINT)
 	{
 		g_ext_status = 1;
@@ -45,20 +50,21 @@ void	handle_signal_in_out(t_context *context)
 	dup2(context->data->f_stdin, 0);
 	dup2(context->data->f_stdout, 1);
 	context->data->sig = 0;
-	signal(SIGQUIT, SIG_IGN);
 	handle_signal_ctrl_c(-200, context);
+	signal(SIGQUIT, (void (*)(int))handle_signal_ctrl_c);
 	signal(SIGINT, (void (*)(int))handle_signal_ctrl_c);
 }
 
 //simple shell loop that reads input, processes commands, and executes
-void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
+void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context,
+	t_info *info)
 {
 	char	*ln;
 
 	while (1)
 	{
 		handle_signal_in_out(context);
-		ln = readline("\033[1;32m:)\033[0m Minishell: $ ");
+		ln = readline("Minishell: $ ");
 		context->data->sigflg = 0;
 		if (!ln)
 		{
@@ -70,6 +76,8 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 			add_history(ln);
 			if (proc_valid_cmd(ln, data, &cmd, context))
 			{
+				add_history(ln);
+				excute(cmd, context, info);
 				free_node_clean(&cmd);
 			}
 		}
@@ -77,27 +85,27 @@ void	loop_and_process_exec_cmd(t_tkn *data, t_comd *cmd, t_context *context)
 	}
 }
 
-int	main(int ac, char **env)
+int	main(int ac, char **av, char **env)
 {
 	t_tkn		*data;
 	t_comd		*cmd;
 	t_context	*context;
+	t_info		*info;
 
-	(void)env;
+	(void)av;
 	g_ext_status = 0;
-	printf("%s\n", START);
+	rl_catch_signals = 0;
 	if (!isatty(0))
-		return (0);
+		return (printf("tty required!!\n"), 1);
 	if (ac == 1)
 	{
-		context = initialize_context();
-		if (context == NULL)
-			return (0);
-		context->data->f_stdin = dup(0);
-		context->data->f_stdout = dup(1);
-		data = malloc(sizeof(t_tkn *));
+		info = initialize_data(env);
+		if (info == NULL)
+			exit(1);
+		context = initialize_context(info->envp);
+		data = init(context);
 		cmd = NULL;
-		loop_and_process_exec_cmd(data, cmd, context);
+		loop_and_process_exec_cmd(data, cmd, context, info);
 		free(data);
 		free(context);
 	}
